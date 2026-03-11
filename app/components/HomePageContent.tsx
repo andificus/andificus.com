@@ -21,6 +21,17 @@ import {
   UseDashboardIllustration,
 } from './Illustrations'
 
+const STACK = [
+  { name: 'Next.js 16', category: 'Framework', description: 'App Router, server components, and edge middleware.' },
+  { name: 'React 19', category: 'UI', description: 'Component-based UI with hooks and client/server boundaries.' },
+  { name: 'TypeScript', category: 'Language', description: 'Strict typing throughout — components, queries, and data shapes.' },
+  { name: 'Supabase', category: 'Backend', description: 'Postgres database, authentication, and file storage.' },
+  { name: 'Tailwind CSS v4', category: 'Styling', description: 'Utility classes alongside a custom CSS design token system.' },
+  { name: 'Framer Motion', category: 'Animation', description: 'Scroll-triggered reveals, stagger animations, and hover states.' },
+  { name: 'Vercel', category: 'Deployment', description: 'Automatic deploys on every push to the main branch via GitHub.' },
+  { name: 'GitHub', category: 'Version Control', description: 'Source of truth for all code — full commit history from day one.' },
+]
+
 export default function HomePageContent() {
   return (
     <main style={{ maxWidth: 980, margin: '0 auto', padding: '72px 28px' }}>
@@ -112,6 +123,44 @@ export default function HomePageContent() {
             iterations.
           </p>
         </StaggerCard>
+      </StaggerGrid>
+
+      {/* ── Tech stack ─────────────────────────────────────────────────── */}
+      <SectionHeading
+        title="Tech stack"
+        subtitle="Everything powering this app from code to deployment."
+      />
+
+      <StaggerGrid
+        style={{
+          display: 'grid',
+          gap: 12,
+          gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+          marginBottom: 28,
+        }}
+      >
+        {STACK.map((item) => (
+          <StaggerCard key={item.name} className="card" style={{ padding: '14px 16px' }}>
+            <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, marginBottom: 6 }}>
+              <span style={{ fontWeight: 700, fontSize: 14, color: 'var(--text)' }}>
+                {item.name}
+              </span>
+              <span style={{
+                fontSize: 10,
+                fontWeight: 600,
+                letterSpacing: '0.08em',
+                textTransform: 'uppercase',
+                color: 'var(--link)',
+                opacity: 0.8,
+              }}>
+                {item.category}
+              </span>
+            </div>
+            <p className="p" style={{ fontSize: 13, margin: 0 }}>
+              {item.description}
+            </p>
+          </StaggerCard>
+        ))}
       </StaggerGrid>
 
       {/* ── Key capabilities ───────────────────────────────────────────── */}
