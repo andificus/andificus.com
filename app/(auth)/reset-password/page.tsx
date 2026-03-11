@@ -28,32 +28,40 @@ export default function ResetPasswordPage() {
   }
 
   return (
-    <main style={{ padding: 40, maxWidth: 420, margin: '80px auto' }}>
-      <div className="card">
-        <h1 style={{ marginTop: 0 }}>Set a new password</h1>
+    <main style={{
+        minHeight: 'calc(100vh - 120px)',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: '24px',
+      }}>
+      <div style={{ width: '100%', maxWidth: 420 }}>
+        <div className="card">
+          <h1 style={{ marginTop: 0 }}>Set a new password</h1>
 
-        <input
-          type="password"
-            placeholder="New password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            className="input"
-            style={{ marginBottom: 18 }}
-        />
+          <input
+            type="password"
+              placeholder="New password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="input"
+              style={{ marginBottom: 18 }}
+          />
 
-        <button
-          className="btn btnPrimary"
-          onClick={updatePassword}
-          style={{ width: '100%' }}
-        >
-          Set password
-        </button>
+          <button
+            className="btn btnPrimary"
+            onClick={updatePassword}
+            style={{ width: '100%' }}
+          >
+            Set password
+          </button>
 
-        {message && (
-          <p style={{ marginTop: 14, color: 'var(--muted)' }}>
-            {message}
-          </p>
-        )}
+          {message && (
+            <p style={{ marginTop: 14, color: 'var(--muted)' }}>
+              {message}
+            </p>
+          )}
+        </div>
       </div>
     </main>
   )

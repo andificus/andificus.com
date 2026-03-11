@@ -58,47 +58,55 @@ export default function LoginPage() {
   }
 
   return (
-    <main style={{ padding: 40, maxWidth: 420, margin: '80px auto' }}>
-      <div className="card">
-        <h1 style={{ marginTop: 0 }}>Sign in</h1>
+    <main style={{
+      minHeight: 'calc(100vh - 120px)',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      padding: '24px',
+    }}>
+    <div style={{ width: '100%', maxWidth: 420 }}>
+        <div className="card">
+          <h1 style={{ marginTop: 0 }}>Sign in</h1>
 
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          className="input"
-          style={{ marginBottom: 10 }}
-          autoComplete="email"
-        />
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="input"
+            style={{ marginBottom: 10 }}
+            autoComplete="email"
+          />
 
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          className="input"
-          style={{ marginBottom: 18 }}
-          autoComplete="current-password"
-        />
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="input"
+            style={{ marginBottom: 18 }}
+            autoComplete="current-password"
+          />
 
-        <button className="btn btnPrimary" onClick={signIn} style={{ width: '100%' }}>
-          Log in
-        </button>
+          <button className="btn btnPrimary" onClick={signIn} style={{ width: '100%' }}>
+            Log in
+          </button>
 
-        <button className="btn btnGhost" onClick={resetPassword} style={{ width: '100%', marginTop: 10 }}>
-          Forgot password?
-        </button>
+          <button className="btn btnGhost" onClick={resetPassword} style={{ width: '100%', marginTop: 10 }}>
+            Forgot password?
+          </button>
 
-        <button className="btn btnGhost" onClick={signUp} style={{ width: '100%', marginTop: 10 }}>
-          Create account
-        </button>
+          <button className="btn btnGhost" onClick={signUp} style={{ width: '100%', marginTop: 10 }}>
+            Create account
+          </button>
 
-        {message && (
-          <p style={{ marginTop: 14, color: 'var(--muted)' }}>
-            {message}
-          </p>
-        )}
+          {message && (
+            <p style={{ marginTop: 14, color: 'var(--muted)' }}>
+              {message}
+            </p>
+          )}
+        </div>
       </div>
     </main>
   )
