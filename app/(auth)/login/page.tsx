@@ -1,51 +1,47 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabaseClient'
 
 export default function LoginPage() {
-  const router = useRouter()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [message, setMessage] = useState('')
 
   useEffect(() => {
     supabase.auth.getUser().then(({ data }) => {
-  if (data.user) window.location.href = '/dashboard'
-  })
-  }, [router])
+      if (data.user) window.location.href = '/dashboard'
+    })
+  }, [])
 
   const signIn = async () => {
-  setMessage('')
-  const { error } = await supabase.auth.signInWithPassword({
-    email,
-    password,
-  })
+    setMessage('')
+    const { error } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    })
 
-  if (error) {
-    setMessage(error.message)
-  } else {
-    window.location.href = '/dashboard'
+    if (error) {
+      setMessage(error.message)
+    } else {
+      window.location.href = '/dashboard'
+    }
   }
-}
 
   const resetPassword = async () => {
-  setMessage('')
+    setMessage('')
 
-  // 👇 put it here
-  if (!email.trim()) {
-    setMessage('Enter your email first.')
-    return
+    if (!email.trim()) {
+      setMessage('Enter your email first.')
+      return
+    }
+
+    const { error } = await supabase.auth.resetPasswordForEmail(email, {
+      redirectTo: `${window.location.origin}/reset-password`,
+    })
+
+    setMessage(error ? error.message : 'Check your email to set a password.')
   }
-
-  const { error } = await supabase.auth.resetPasswordForEmail(email, {
-    redirectTo: `${window.location.origin}/reset-password`,
-  })
-
-  setMessage(error ? error.message : 'Check your email to set a password.')
-}
-
 
   const signUp = async () => {
     setMessage('')
@@ -65,7 +61,7 @@ export default function LoginPage() {
       justifyContent: 'center',
       padding: '24px',
     }}>
-    <div style={{ width: '100%', maxWidth: 420 }}>
+      <div style={{ width: '100%', maxWidth: 420 }}>
         <div className="card">
           <h1 style={{ marginTop: 0 }}>Sign in</h1>
 
