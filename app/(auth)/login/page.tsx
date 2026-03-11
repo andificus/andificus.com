@@ -11,9 +11,9 @@ export default function LoginPage() {
   const [message, setMessage] = useState('')
 
   useEffect(() => {
-    supabase.auth.getSession().then(({ data }) => {
-      if (data.session) router.replace('/dashboard')
-    })
+    supabase.auth.getUser().then(({ data }) => {
+  if (data.user) window.location.href = '/dashboard'
+  })
   }, [router])
 
   const signIn = async () => {
@@ -26,7 +26,7 @@ export default function LoginPage() {
   if (error) {
     setMessage(error.message)
   } else {
-    window.location.href = '/dashboard'  // ← change this line
+    window.location.href = '/dashboard'
   }
 }
 
