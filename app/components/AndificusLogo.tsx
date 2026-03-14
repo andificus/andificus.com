@@ -37,37 +37,55 @@ export default function AndificusLogo({ height = 42 }: { height?: number }) {
           <stop offset="100%" stopColor="#4488cc" stopOpacity="0.2" />
         </linearGradient>
 
+        {/* Text shimmer — sweeps A to S across the letters */}
+        <linearGradient id="textShimmer" x1="0" y1="0" x2="1" y2="0" gradientUnits="userSpaceOnUse"
+          gradientTransform="translate(-140 0)">
+          <stop offset="0%" stopColor="currentColor" stopOpacity="1" />
+          <stop offset="45%" stopColor="currentColor" stopOpacity="1" />
+          <stop offset="50%" stopColor="#ffffff" stopOpacity="0.95" />
+          <stop offset="55%" stopColor="currentColor" stopOpacity="1" />
+          <stop offset="100%" stopColor="currentColor" stopOpacity="1" />
+          <animateTransform
+            attributeName="gradientTransform"
+            type="translate"
+            from="-140 0"
+            to="140 0"
+            dur="3.5s"
+            repeatCount="indefinite"
+            calcMode="spline"
+            keySplines="0.4 0 0.6 1"
+          />
+        </linearGradient>
+
         {/* Clip orb to circle */}
         <clipPath id="orbClip">
           <circle cx="21" cy="21" r="13" />
         </clipPath>
       </defs>
 
-      {/* ── Outer ring — rotates continuously ── */}
-      <g transform="translate(21, 21)">
+      {/* ── Rotating ring — centered on orb at (21,21) ── */}
+      <g>
         <animateTransform
           attributeName="transform"
           attributeType="XML"
           type="rotate"
-          from="0 0 0"
-          to="360 0 0"
+          from="0 21 21"
+          to="360 21 21"
           dur="8s"
           repeatCount="indefinite"
         />
-        {/* Ring ellipse — tilted perspective */}
-        <ellipse cx="0" cy="0" rx="18" ry="7"
+        <ellipse cx="21" cy="21" rx="22" ry="9"
           fill="none"
           stroke="url(#ringShine)"
           strokeWidth="1.5"
           opacity="0.85"
         />
-        {/* Second ring arc — offset for depth */}
-        <ellipse cx="0" cy="0" rx="18" ry="7"
+        <ellipse cx="21" cy="21" rx="22" ry="9"
           fill="none"
           stroke="#5aacde"
           strokeWidth="0.6"
-          strokeDasharray="28 84"
-          strokeDashoffset="14"
+          strokeDasharray="34 100"
+          strokeDashoffset="17"
           opacity="0.5"
         />
       </g>
@@ -130,7 +148,7 @@ export default function AndificusLogo({ height = 42 }: { height?: number }) {
         opacity="0.2"
       />
 
-      {/* ── ANDIFICUS text ── */}
+      {/* ── ANDIFICUS text with shimmer ── */}
       <text
         x="44"
         y="27"
@@ -138,7 +156,7 @@ export default function AndificusLogo({ height = 42 }: { height?: number }) {
         fontSize="16.5"
         fontWeight="400"
         letterSpacing="2.5"
-        fill="currentColor"
+        fill="url(#textShimmer)"
         style={{ userSelect: 'none' }}
       >
         ANDIFICUS
