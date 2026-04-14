@@ -11,9 +11,6 @@ const ContentSecurityPolicy = `
 `.replace(/\n/g, ' ').trim()
 
 const nextConfig = {
-  experimental: {
-    browsersListForSwc: true,
-  },
   async headers() {
     return [
       {
