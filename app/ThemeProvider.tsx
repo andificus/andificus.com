@@ -1,13 +1,18 @@
 'use client'
 
 import { useEffect } from 'react'
-import { supabase } from '@/lib/supabaseClient'
 
 type Theme = 'system' | 'light' | 'dark'
 
+function getStoredTheme(): Theme {
+  if (typeof window === 'undefined') return 'system'
+  const stored = localStorage.getItem('theme') as Theme | null
+  if (stored === 'light' || stored === 'dark' || stored === 'system') return stored
+  return 'system'
+}
+
 function applyTheme(theme: Theme) {
   const root = document.documentElement
-
   if (theme === 'system') {
     const isDark = window.matchMedia?.('(prefers-color-scheme: dark)').matches
     root.dataset.theme = isDark ? 'dark' : 'light'
@@ -18,24 +23,14 @@ function applyTheme(theme: Theme) {
 
 export default function ThemeProvider() {
   useEffect(() => {
-    const load = async () => {
-      // logged-out default
-      applyTheme('system')
+    applyTheme(getStoredTheme())
 
-      const { data } = await supabase.auth.getSession()
-      const user = data.session?.user
-      if (!user) return
-
-      const { data: profile } = await supabase
-        .from('profiles')
-        .select('theme')
-        .eq('user_id', user.id)
-        .maybeSingle()
-
-      applyTheme((profile?.theme as Theme) ?? 'system')
+    const mq = window.matchMedia('(prefers-color-scheme: dark)')
+    const onChange = () => {
+      if (getStoredTheme() === 'system') applyTheme('system')
     }
-
-    load()
+    mq.addEventListener('change', onChange)
+    return () => mq.removeEventListener('change', onChange)
   }, [])
 
   return null

@@ -5,8 +5,6 @@ import NavBar from './components/NavBar'
 import ThemeProvider from './ThemeProvider'
 import Footer from './components/Footer'
 
-export const dynamic = 'force-dynamic'
-export const revalidate = 0
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,7 +25,7 @@ export const metadata: Metadata = {
   },
 
   description:
-    'Andificus is a modern personal web app built with Next.js, Supabase, and a focus on clean design, performance, and security.',
+    'Andrew Wentzloff — IT professional and developer. Building modern web applications with Next.js, TypeScript, and a focus on clean fundamentals.',
 
   openGraph: {
     title: 'Andificus',
