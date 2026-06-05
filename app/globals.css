@@ -225,6 +225,9 @@ html[data-theme="dark"] body {
   .brandLogo {
     height: 36px;
   }
+  .navbarlinks {
+    display: none;
+  }
 }
 
 .navbarLinks {
