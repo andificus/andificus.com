@@ -225,14 +225,13 @@ html[data-theme="dark"] body {
   .brandLogo {
     height: 36px;
   }
-  .navbarlinks {
-    display: none;
-  }
+
 }
 
 .navbarLinks {
   display: flex;
   gap: 14px;
+  display: none;
 }
 
 .navbarRight {
