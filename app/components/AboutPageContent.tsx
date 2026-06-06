@@ -51,7 +51,7 @@ export default function AboutPageContent() {
               IT Professional and Web Developer
             </p>
             <h1 style={{ fontSize: 'clamp(2rem, 5vw, 3rem)', fontWeight: 800, letterSpacing: '-0.03em', margin: '0 0 16px' }}>
-              Andy Wentzloff
+              Andrew Wentzloff
             </h1>
             <p className="p" style={{ fontSize: 17, maxWidth: 580, margin: '0 0 24px' }}>
               15 years of hands-on IT experience spanning mainframe operations, enterprise
