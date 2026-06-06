@@ -29,9 +29,7 @@ export default function NavBar() {
 
         <div className="navbarLinks">
           <a href="/about"    className="navLink">About</a>
-          <a href="#skills"   className="navLink">Skills</a>
-          <a href="#projects" className="navLink">Projects</a>
-          <a href="#contact"  className="navLink">Contact</a>
+
         </div>
 
         <div className="navbarRight">
