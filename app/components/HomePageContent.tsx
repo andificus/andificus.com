@@ -16,7 +16,7 @@ const STACK = [
   { name: 'TypeScript',      category: 'Language',        description: 'Strict typing throughout — components, data shapes, and APIs.' },
   { name: 'Tailwind CSS v4', category: 'Styling',         description: 'Utility classes alongside a custom CSS design token system.' },
   { name: 'Framer Motion',   category: 'Animation',       description: 'Scroll-triggered reveals, stagger animations, and hover states.' },
-  { name: 'Azure AD',        category: 'Cloud',           description: 'Identity management, enterprise SSO, and access control at scale.' },
+  { name: 'Entra ID',        category: 'Cloud',           description: 'Identity management, enterprise SSO, and access control at scale.' },
   { name: 'Vercel',          category: 'Deployment',      description: 'Automatic deploys on every push to the main branch via GitHub.' },
   { name: 'GitHub',          category: 'Version Control', description: 'Source of truth for all code — full commit history from day one.' },
 ]
