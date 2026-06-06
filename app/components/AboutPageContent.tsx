@@ -3,8 +3,8 @@
 import Image from 'next/image'
 import { FadeUp, SectionHeading, StaggerGrid, StaggerCard } from './Motion'
 
-// Add your photo to /public/images/andy.jpg and change null to '/images/andy.jpg'
-const PHOTO_SRC: string | null = null
+
+const PHOTO_SRC: string | null = /images/andy.jpg
 
 const FOCUS_AREAS = [
   {
@@ -29,11 +29,7 @@ const FOCUS_AREAS = [
   },
 ]
 
-const STATS = [
-  { number: '15+', label: 'Years in IT' },
-  { number: 'AZ-104', label: 'In Progress' },
-  { number: '100', label: 'Lighthouse Score' },
-]
+
 
 const JOURNEY = [
   `It started with a Tandy 1000HX. My uncle passed it down to us when I was a kid, and I thought I was one step closer to working on a starship. Growing up watching Star Trek, Star Wars, and the Alien films, I was convinced it was unfair that we did not have that level of technology yet. When that computer landed in our house, I spent endless hours learning MS-DOS and Windows 3.0, and eventually took the whole thing apart screw by screw just to see what was inside.`,
@@ -154,49 +150,7 @@ export default function AboutPageContent() {
         </section>
       </FadeUp>
 
-      {/* ── Current Goals ── */}
-      <FadeUp delay={0.2}>
-        <section style={{ marginBottom: 64 }}>
-          <SectionHeading title="Current Goals" />
-          <div className="card" style={{ padding: 32, display: 'flex', flexDirection: 'column', gap: 20 }}>
-            <div>
-              <div style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: 6,
-                background: 'color-mix(in srgb, var(--link) 15%, transparent)',
-                color: 'var(--link)',
-                borderRadius: 20,
-                padding: '4px 12px',
-                fontSize: 11,
-                fontWeight: 700,
-                letterSpacing: '0.08em',
-                textTransform: 'uppercase',
-                marginBottom: 12,
-              }}>
-                <span style={{ fontSize: 8 }}>●</span> In Progress
-              </div>
-              <p className="p" style={{ margin: 0 }}>
-                I am currently working toward AZ-104 as the first step in a deliberate
-                multi-cloud strategy. Azure first, then AWS, then Google Cloud. The goal
-                is not to skim the surface of all three but to build real, validated
-                expertise across every major cloud platform and become the kind of engineer
-                who can work confidently in any environment.
-              </p>
-            </div>
-            <div style={{ borderTop: '1px solid var(--border)', paddingTop: 20 }}>
-              <p className="p" style={{ margin: 0 }}>
-                In parallel I am building Andificus, a personal web project built with
-                Next.js, TypeScript, and deployed to production on Vercel. It is where I
-                practice what I am learning in real conditions: architecture decisions,
-                performance, security headers, and deployment pipelines. The goal is the
-                same as it has always been. Understand how things actually work, not just
-                how to use them.
-              </p>
-            </div>
-          </div>
-        </section>
-      </FadeUp>
+
 
       {/* ── Beyond Work ── */}
       <FadeUp delay={0.25}>
