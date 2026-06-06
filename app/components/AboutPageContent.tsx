@@ -3,8 +3,8 @@
 import Image from 'next/image'
 import { FadeUp, SectionHeading } from './Motion'
 
-// Add your photo to /public/images/andy.jpg and change null to '/images/andy.jpg'
-const PHOTO_SRC: string | null = null
+
+const PHOTO_SRC: string | null = '/images/andy.jpg'
 
 const FOCUS_AREAS = [
   {
