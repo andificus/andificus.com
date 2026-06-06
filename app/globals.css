@@ -231,7 +231,6 @@ html[data-theme="dark"] body {
 .navbarLinks {
   display: flex;
   gap: 14px;
-  display: none;
 }
 
 .navbarRight {
