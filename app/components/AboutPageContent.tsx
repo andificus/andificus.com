@@ -57,7 +57,7 @@ export default function AboutPageContent() {
       {/* ── My Journey ── */}
       <FadeUp delay={0.1}>
         <section style={{ marginBottom: 64 }}>
-          <SectionHeading>My Journey</SectionHeading>
+          <SectionHeading title="My Journey" />
           <div className="card" style={{ padding: 32, display: 'flex', flexDirection: 'column', gap: 20 }}>
             <p className="p">
               It started with a Tandy 1000HX. My uncle passed it down to us when I was a
@@ -100,7 +100,7 @@ export default function AboutPageContent() {
       {/* ── Areas of Focus ── */}
       <FadeUp delay={0.15}>
         <section style={{ marginBottom: 64 }}>
-          <SectionHeading>Areas of Focus</SectionHeading>
+          <SectionHeading title="Areas of Focus" />
           <div style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))',
@@ -122,7 +122,7 @@ export default function AboutPageContent() {
       {/* ── Current Goals ── */}
       <FadeUp delay={0.2}>
         <section style={{ marginBottom: 64 }}>
-          <SectionHeading>Current Goals</SectionHeading>
+          <SectionHeading title="Current Goals" />
           <div className="card" style={{ padding: 32, display: 'flex', flexDirection: 'column', gap: 20 }}>
             <p className="p">
               I'm currently working toward AZ-104 as the first step in a deliberate
@@ -146,7 +146,7 @@ export default function AboutPageContent() {
       {/* ── Beyond Work ── */}
       <FadeUp delay={0.25}>
         <section style={{ marginBottom: 64 }}>
-          <SectionHeading>Beyond Work</SectionHeading>
+          <SectionHeading title="Beyond Work" />
           <div className="card" style={{ padding: 32 }}>
             <p className="p">
               Outside of technology, I'm writing a fantasy novel — a long-term project
@@ -162,7 +162,7 @@ export default function AboutPageContent() {
       {/* ── Connect ── */}
       <FadeUp delay={0.3}>
         <section>
-          <SectionHeading>Let's Connect</SectionHeading>
+          <SectionHeading title="Let's Connect" />
           <div className="card" style={{ padding: 32, display: 'flex', flexDirection: 'column', gap: 24 }}>
             <p className="p">
               I'm currently open to new opportunities — infrastructure, cloud, IT
