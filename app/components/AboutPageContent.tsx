@@ -78,7 +78,7 @@ export default function AboutPageContent() {
               I got the call, got the offer, and never looked back.
             </p>
             <p className="p">
-              From the helpdesk I moved into remote job entry and batch processing —
+              From the helpdesk I moved into remote job entry and batch processing
               mainframe environments, JCL, COBOL, RACF, QWS3270. Not exactly what the kid
               watching Star Trek had in mind, but it built a technical foundation that most
               people in modern IT have never seen. That work eventually led me to an
@@ -87,7 +87,7 @@ export default function AboutPageContent() {
             </p>
             <p className="p">
               Later, as part of a two-person IT team supporting a large multi-location
-              organization, I took ownership of the full picture — infrastructure, Azure
+              organization, I took ownership of the full picture infrastructure, Azure
               AD, MDM, SharePoint, GRC, and the company website. That website was a VB.NET
               Framework 3 application when I inherited it. I migrated it to ASP.NET Core,
               then again to WordPress, largely on my own initiative. Somewhere in that
