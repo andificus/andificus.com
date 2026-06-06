@@ -1,10 +1,10 @@
 const ContentSecurityPolicy = `
   default-src 'self';
-  script-src 'self' 'unsafe-eval' 'unsafe-inline';
+  script-src 'self' 'unsafe-eval' 'unsafe-inline' https://platform.linkedin.com;
   style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
   font-src 'self' https://fonts.gstatic.com;
-  img-src 'self' blob: data:;
-  connect-src 'self';
+  img-src 'self' blob: data: https://media.licdn.com https://static.licdn.com;
+  connect-src 'self' https://www.linkedin.com;
   frame-ancestors 'none';
 `.replace(/\n/g, ' ').trim()
 
