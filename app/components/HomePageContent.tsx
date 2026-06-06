@@ -21,30 +21,23 @@ const STACK = [
   { name: 'GitHub',          category: 'Version Control', description: 'Source of truth for all code — full commit history from day one.' },
 ]
 
-const SERVICES = [
-  {
-    icon: '🏗️',
-    title: 'IT Infrastructure',
-    desc: 'Servers, networking, endpoint management, and enterprise environments across large multi-location organizations.',
-  },
+const FOCUS = [
   {
     icon: '☁️',
-    title: 'Cloud & Azure',
-    desc: 'Azure AD, identity management, and cloud operations. Building toward full multi-cloud expertise.',
+    title: 'Cloud Infrastructure',
+    desc: 'Azure AD, identity management, and enterprise-scale cloud operations. Building deep expertise across the major cloud platforms.',
   },
   {
-    icon: '🌐',
-    title: 'Web Development',
-    desc: 'Modern full-stack applications built with Next.js, React, and TypeScript — from architecture to production.',
+    icon: '💻',
+    title: 'Software Development',
+    desc: 'Building modern web applications with Next.js, React, and TypeScript. From architecture decisions to production deployments.',
   },
   {
-    icon: '🔐',
-    title: 'IT Security',
-    desc: 'RACF, Windows security, GRC workflows, and security analysis in high-stakes enterprise settings.',
+    icon: '📷',
+    title: 'Photography',
+    desc: 'Capturing moments and studying light. A creative practice that sharpens the same eye for detail that informs good design and good code.',
   },
 ]
-
-const TECH_TAGS = ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'Vercel']
 
 function StackCard({ item, index }: { item: typeof STACK[0], index: number }) {
   return (
@@ -120,7 +113,7 @@ export default function HomePageContent() {
           transition={{ duration: 0.5, delay: 0.1 }}
           style={{ letterSpacing: '0.12em', textTransform: 'uppercase', fontSize: 12, marginBottom: 0 }}
         >
-          IT Professional and Web Developer
+          Technologist · Creator · Lifelong Learner
         </motion.p>
 
         <HeroText text="Andrew Wentzloff." />
@@ -131,9 +124,8 @@ export default function HomePageContent() {
           transition={{ duration: 0.55, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
           style={{ fontSize: 18, lineHeight: 1.7, maxWidth: 620, margin: '0 0 32px' }}
         >
-          15 years of hands-on IT experience across infrastructure, cloud, security, and
-          modern web development. Based in the Quad Cities — open to remote, hybrid, and
-          local opportunities.
+          Building software, exploring cloud infrastructure, creating visual art,
+          and documenting the journey.
         </motion.p>
 
         <motion.div
@@ -146,25 +138,25 @@ export default function HomePageContent() {
             <Link href="/about" className="btn btnPrimary">About Me</Link>
           </motion.div>
           <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}>
-            <a href="#projects" className="btn btnGhost">View Projects</a>
+            <a href="#connect" className="btn btnGhost">Connect</a>
           </motion.div>
         </motion.div>
       </section>
 
-      {/* ── What I Do ── */}
+      {/* ── Current Focus ── */}
       <SectionHeading
-        title="What I Do"
-        subtitle="A career built across the full width of IT — from the data center to the browser."
+        title="Current Focus"
+        subtitle="What I am actively building, learning, and creating right now."
       />
 
       <StaggerGrid style={{
         display: 'grid',
         gap: 16,
-        gridTemplateColumns: 'repeat(auto-fill, minmax(340px, 1fr))',
-        marginBottom: 28,
+        gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
+        marginBottom: 56,
       }}>
-        {SERVICES.map((service) => (
-          <StaggerCard key={service.title}>
+        {FOCUS.map((item) => (
+          <StaggerCard key={item.title}>
             <div className="card" style={{ padding: 24, borderTop: '3px solid var(--link)', height: '100%', boxSizing: 'border-box' }}>
               <div style={{
                 display: 'inline-flex',
@@ -177,89 +169,14 @@ export default function HomePageContent() {
                 fontSize: 24,
                 marginBottom: 16,
               }}>
-                {service.icon}
+                {item.icon}
               </div>
-              <h3 style={{ margin: '0 0 8px', fontSize: 15, fontWeight: 700 }}>{service.title}</h3>
-              <p className="p" style={{ margin: 0 }}>{service.desc}</p>
+              <h3 style={{ margin: '0 0 8px', fontSize: 15, fontWeight: 700 }}>{item.title}</h3>
+              <p className="p" style={{ margin: 0 }}>{item.desc}</p>
             </div>
           </StaggerCard>
         ))}
       </StaggerGrid>
-
-      {/* ── Featured Project ── */}
-      <div id="projects">
-        <SectionHeading
-          title="Featured Project"
-          subtitle="What I have been building to sharpen real-world web development skills."
-        />
-      </div>
-
-      <FadeUp>
-        <div className="card" style={{ padding: 32, marginBottom: 28 }}>
-          <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', flexWrap: 'wrap', gap: 16, marginBottom: 16 }}>
-            <div>
-              <p style={{
-                fontSize: 11,
-                fontWeight: 700,
-                letterSpacing: '0.1em',
-                textTransform: 'uppercase',
-                color: 'var(--link)',
-                margin: '0 0 6px',
-              }}>
-                Personal Project
-              </p>
-              <h3 style={{ margin: 0, fontSize: 24, fontWeight: 800, letterSpacing: '-0.02em' }}>
-                Andificus
-              </h3>
-            </div>
-            <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
-              <motion.a
-                href="https://andificus.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn btnPrimary"
-                whileHover={{ scale: 1.04 }}
-                whileTap={{ scale: 0.97 }}
-              >
-                Live Site
-              </motion.a>
-              <motion.a
-                href="https://github.com/andificus"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn btnGhost"
-                whileHover={{ scale: 1.04 }}
-                whileTap={{ scale: 0.97 }}
-              >
-                GitHub
-              </motion.a>
-            </div>
-          </div>
-
-          <p className="p" style={{ maxWidth: 680, marginBottom: 20 }}>
-            A personal web application built from scratch as a hands-on learning project.
-            Covers the full development lifecycle: architecture decisions, authentication,
-            database design, security headers, and production deployment. Achieved a
-            perfect 100/100/100/100 Lighthouse score.
-          </p>
-
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
-            {TECH_TAGS.map((tag) => (
-              <span key={tag} style={{
-                fontSize: 12,
-                fontWeight: 600,
-                padding: '4px 10px',
-                borderRadius: 20,
-                background: 'color-mix(in srgb, var(--link) 12%, transparent)',
-                color: 'var(--link)',
-                letterSpacing: '0.02em',
-              }}>
-                {tag}
-              </span>
-            ))}
-          </div>
-        </div>
-      </FadeUp>
 
       {/* ── Skills ── */}
       <SectionHeading
@@ -276,7 +193,7 @@ export default function HomePageContent() {
           display: 'grid',
           gap: 12,
           gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
-          marginBottom: 28,
+          marginBottom: 56,
         }}
       >
         {STACK.map((item, i) => (
@@ -284,44 +201,37 @@ export default function HomePageContent() {
         ))}
       </motion.div>
 
-      {/* ── About teaser ── */}
+      {/* ── Connect ── */}
       <FadeUp>
-        <div className="card" style={{ padding: 32, marginTop: 34, marginBottom: 28, display: 'flex', flexDirection: 'column', gap: 16 }}>
+        <div id="connect" className="card" style={{ padding: 32, display: 'flex', flexDirection: 'column', gap: 20 }}>
           <div>
-            <h2 className="h2" style={{ margin: '0 0 12px' }}>Andrew Wentzloff</h2>
-            <p className="p" style={{ maxWidth: 640 }}>
-              IT professional by trade, builder by nature. Self-taught, no degree, no shortcuts —
-              just a genuine curiosity for how things work that started with a Tandy 1000HX and
-              has not slowed down since.
+            <h2 className="h2" style={{ margin: '0 0 12px' }}>Connect</h2>
+            <p className="p" style={{ maxWidth: 560, margin: 0 }}>
+              Find me on LinkedIn and GitHub, or read the full story on the About page.
             </p>
           </div>
-          <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }} style={{ alignSelf: 'flex-start' }}>
-            <Link href="/about" className="btn btnGhost">Full Story</Link>
-          </motion.div>
-        </div>
-      </FadeUp>
-
-      {/* ── Contact ── */}
-      <FadeUp>
-        <div className="card" style={{ padding: 32, marginBottom: 10, display: 'flex', flexDirection: 'column', gap: 16 }}>
-          <div>
-            <h2 className="h2" style={{ margin: '0 0 12px' }}>Open to Opportunities</h2>
-            <p className="p" style={{ maxWidth: 640 }}>
-              Currently available for infrastructure, cloud, IT generalist, or web development
-              roles. Remote, hybrid, or local to the Quad Cities area.
-            </p>
+          <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
+            <motion.a
+              href="https://www.linkedin.com/in/andywentzloff"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btnPrimary"
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.97 }}
+            >
+              LinkedIn
+            </motion.a>
+            <motion.a
+              href="https://github.com/andificus"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btnGhost"
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.97 }}
+            >
+              GitHub
+            </motion.a>
           </div>
-          <motion.a
-            href="https://www.linkedin.com/in/andywentzloff"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn btnPrimary"
-            style={{ alignSelf: 'flex-start' }}
-            whileHover={{ scale: 1.04 }}
-            whileTap={{ scale: 0.97 }}
-          >
-            Connect on LinkedIn
-          </motion.a>
         </div>
       </FadeUp>
 

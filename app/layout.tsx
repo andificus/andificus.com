@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Andificus',
     description:
-      'A modern personal web app built with Next.js and Supabase.',
+      'Andrew Wentzloff — Technologist, creator, and lifelong learner.',
     url: 'https://andificus.com',
     siteName: 'Andificus',
     type: 'website',
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Andificus',
     description:
-      'A modern personal web app built with Next.js and Supabase.',
+      'Andrew Wentzloff — Technologist, creator, and lifelong learner.',
     images: ['/images/preview.png'],
   },
 };

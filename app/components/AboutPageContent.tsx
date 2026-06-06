@@ -57,7 +57,7 @@ export default function AboutPageContent() {
           )}
           <div style={{ flex: 1, minWidth: 260 }}>
             <p style={{ fontSize: 13, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--link)', margin: '0 0 8px' }}>
-              IT Professional and Web Developer
+              Technologist · Creator · Lifelong Learner
             </p>
             <h1 style={{ fontSize: 'clamp(2rem, 5vw, 3rem)', fontWeight: 800, letterSpacing: '-0.03em', margin: '0 0 16px' }}>
               Andrew Wentzloff

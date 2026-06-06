@@ -221,17 +221,20 @@ html[data-theme="dark"] body {
   display: block;
 }
 
-@media (max-width: 640px) {
-  .brandLogo {
-    height: 36px;
-  }
-
-}
-
 .navbarLinks {
   display: flex;
   gap: 14px;
 }
+
+@media (max-width: 640px) {
+  .brandLogo {
+    height: 36px;
+  }
+  .navbarLinks {
+    display: none;
+  }
+}
+
 
 .navbarRight {
   margin-left: auto;
