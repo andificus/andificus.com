@@ -68,19 +68,6 @@ export default function AboutPageContent() {
               Cities. Open to remote, hybrid, and local opportunities.
             </p>
 
-            {/* Stats row */}
-            <div style={{ display: 'flex', gap: 28, margin: '0 0 24px', flexWrap: 'wrap' }}>
-              {STATS.map((stat) => (
-                <div key={stat.label}>
-                  <div style={{ fontSize: 22, fontWeight: 800, color: 'var(--link)', letterSpacing: '-0.02em', lineHeight: 1 }}>
-                    {stat.number}
-                  </div>
-                  <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--muted)', marginTop: 4 }}>
-                    {stat.label}
-                  </div>
-                </div>
-              ))}
-            </div>
 
             <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
               <a href="https://www.linkedin.com/in/andywentzloff" target="_blank" rel="noopener noreferrer" className="btn btnPrimary">LinkedIn</a>
