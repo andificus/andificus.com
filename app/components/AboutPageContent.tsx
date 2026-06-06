@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { FadeUp, SectionHeading, StaggerGrid, StaggerCard } from './Motion'
 
 
-const PHOTO_SRC: string | null = /images/andy.jpg
+const PHOTO_SRC: string | null = '/images/andy.jpg'
 
 const FOCUS_AREAS = [
   {
