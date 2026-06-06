@@ -10,7 +10,7 @@ const FOCUS_AREAS = [
   {
     icon: '☁️',
     title: 'Cloud Infrastructure',
-    desc: 'Azure AD, identity management, and a deliberate multi-cloud path. AZ-104 in progress, with AWS and GCP certifications to follow.',
+    desc: 'Azure AD, identity management, and enterprise-scale cloud operations. Expanding across Azure, AWS, and Google Cloud environments.',
   },
   {
     icon: '🖥️',
