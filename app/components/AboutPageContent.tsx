@@ -1,10 +1,10 @@
 'use client'
 
 import Image from 'next/image'
-import { FadeUp, SectionHeading } from './Motion'
+import { FadeUp, SectionHeading, StaggerGrid, StaggerCard } from './Motion'
 
-
-const PHOTO_SRC: string | null = '/images/andy.jpg'
+// Add your photo to /public/images/andy.jpg and change null to '/images/andy.jpg'
+const PHOTO_SRC: string | null = null
 
 const FOCUS_AREAS = [
   {
@@ -29,6 +29,19 @@ const FOCUS_AREAS = [
   },
 ]
 
+const STATS = [
+  { number: '15+', label: 'Years in IT' },
+  { number: 'AZ-104', label: 'In Progress' },
+  { number: '100', label: 'Lighthouse Score' },
+]
+
+const JOURNEY = [
+  `It started with a Tandy 1000HX. My uncle passed it down to us when I was a kid, and I thought I was one step closer to working on a starship. Growing up watching Star Trek, Star Wars, and the Alien films, I was convinced it was unfair that we did not have that level of technology yet. When that computer landed in our house, I spent endless hours learning MS-DOS and Windows 3.0, and eventually took the whole thing apart screw by screw just to see what was inside.`,
+  `In high school I took keyboarding and Visual Basic 6 classes. Programming did not click right away, and I assumed IT would probably require a degree I did not have. So I took a path through customer service, where I ended up working with AS/400 systems and quietly became the person everyone came to when something did not work. A few years in, I applied for a helpdesk position on a whim. No formal training, no certifications. I did not expect to get it. I got the call, got the offer, and never looked back.`,
+  `From the helpdesk I moved into remote job entry and batch processing in mainframe environments, working with JCL, COBOL, RACF, and QWS3270. That work led me to an enterprise IT security team, where I was introduced to Microsoft Azure for the first time. Azure AD clicked immediately and became a core focus.`,
+  `Later, as part of a two-person IT team supporting a large multi-location organization, I took ownership of the full picture: infrastructure, Azure AD, MDM, SharePoint, and GRC. I also inherited the company website, a VB.NET Framework 3 application. I migrated it to ASP.NET Core, then again to WordPress, largely on my own initiative. Somewhere in that process I realized I genuinely enjoyed web development. That led directly to building Andificus, my current project built with Next.js, React, and TypeScript.`,
+]
+
 export default function AboutPageContent() {
   return (
     <main style={{ maxWidth: 860, margin: '0 auto', padding: '60px 24px 80px' }}>
@@ -46,18 +59,33 @@ export default function AboutPageContent() {
               style={{ borderRadius: '50%', objectFit: 'cover', flexShrink: 0, border: '3px solid var(--border)' }}
             />
           )}
-          <div>
+          <div style={{ flex: 1, minWidth: 260 }}>
             <p style={{ fontSize: 13, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--link)', margin: '0 0 8px' }}>
               IT Professional and Web Developer
             </p>
             <h1 style={{ fontSize: 'clamp(2rem, 5vw, 3rem)', fontWeight: 800, letterSpacing: '-0.03em', margin: '0 0 16px' }}>
-              Andrew Wentzloff
+              Andy Wentzloff
             </h1>
-            <p className="p" style={{ fontSize: 17, maxWidth: 580, margin: '0 0 24px' }}>
+            <p className="p" style={{ fontSize: 17, maxWidth: 580, margin: '0 0 20px' }}>
               15 years of hands-on IT experience spanning mainframe operations, enterprise
               security, cloud infrastructure, and modern web development. Based in the Quad
               Cities. Open to remote, hybrid, and local opportunities.
             </p>
+
+            {/* Stats row */}
+            <div style={{ display: 'flex', gap: 28, margin: '0 0 24px', flexWrap: 'wrap' }}>
+              {STATS.map((stat) => (
+                <div key={stat.label}>
+                  <div style={{ fontSize: 22, fontWeight: 800, color: 'var(--link)', letterSpacing: '-0.02em', lineHeight: 1 }}>
+                    {stat.number}
+                  </div>
+                  <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--muted)', marginTop: 4 }}>
+                    {stat.label}
+                  </div>
+                </div>
+              ))}
+            </div>
+
             <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
               <a href="https://www.linkedin.com/in/andywentzloff" target="_blank" rel="noopener noreferrer" className="btn btnPrimary">LinkedIn</a>
               <a href="https://github.com/andificus" target="_blank" rel="noopener noreferrer" className="btn btnGhost">GitHub</a>
@@ -70,41 +98,20 @@ export default function AboutPageContent() {
       <FadeUp delay={0.1}>
         <section style={{ marginBottom: 64 }}>
           <SectionHeading title="My Journey" />
-          <div className="card" style={{ padding: 32, display: 'flex', flexDirection: 'column', gap: 20 }}>
-            <p className="p">
-              It started with a Tandy 1000HX. My uncle passed it down to us when I was a
-              kid, and I thought I was one step closer to working on a starship. Growing up
-              watching Star Trek, Star Wars, and the Alien films, I was convinced it was
-              unfair that we did not have that level of technology yet. When that computer
-              landed in our house, I spent endless hours learning MS-DOS and Windows 3.0,
-              and eventually took the whole thing apart screw by screw just to see what
-              was inside.
-            </p>
-            <p className="p">
-              In high school I took keyboarding and Visual Basic 6 classes. Programming
-              did not click right away, and I assumed IT would probably require a degree I
-              did not have. So I took a path through customer service, where I ended up
-              working with AS/400 systems and quietly became the person everyone came to
-              when something did not work. A few years in, I applied for a helpdesk
-              position on a whim. No formal training, no certifications. I did not expect
-              to get it. I got the call, got the offer, and never looked back.
-            </p>
-            <p className="p">
-              From the helpdesk I moved into remote job entry and batch processing in
-              mainframe environments, working with JCL, COBOL, RACF, and QWS3270. That
-              work led me to an enterprise IT security team, where I was introduced to
-              Microsoft Azure for the first time. Azure AD clicked immediately and became
-              a core focus.
-            </p>
-            <p className="p">
-              Later, as part of a two-person IT team supporting a large multi-location
-              organization, I took ownership of the full picture: infrastructure, Azure AD,
-              MDM, SharePoint, and GRC. I also inherited the company website, a VB.NET
-              Framework 3 application. I migrated it to ASP.NET Core, then again to
-              WordPress, largely on my own initiative. Somewhere in that process I realized
-              I genuinely enjoyed web development. That led directly to building Andificus,
-              my current project built with Next.js, React, and TypeScript.
-            </p>
+          <div className="card" style={{ padding: 32, display: 'flex', flexDirection: 'column', gap: 0 }}>
+            {JOURNEY.map((para, i) => (
+              <div
+                key={i}
+                style={{
+                  borderLeft: '3px solid var(--link)',
+                  paddingLeft: 20,
+                  marginBottom: i < JOURNEY.length - 1 ? 28 : 0,
+                  opacity: 0.6 + i * 0.12,
+                }}
+              >
+                <p className="p" style={{ margin: 0 }}>{para}</p>
+              </div>
+            ))}
           </div>
         </section>
       </FadeUp>
@@ -113,15 +120,37 @@ export default function AboutPageContent() {
       <FadeUp delay={0.15}>
         <section style={{ marginBottom: 64 }}>
           <SectionHeading title="Areas of Focus" />
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))', gap: 16 }}>
+          <StaggerGrid style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(340px, 1fr))', gap: 16 }}>
             {FOCUS_AREAS.map((area) => (
-              <div key={area.title} className="card" style={{ padding: 24 }}>
-                <div style={{ fontSize: 28, marginBottom: 12 }}>{area.icon}</div>
-                <h3 style={{ margin: '0 0 8px', fontSize: 15, fontWeight: 700 }}>{area.title}</h3>
-                <p className="p" style={{ margin: 0 }}>{area.desc}</p>
-              </div>
+              <StaggerCard key={area.title}>
+                <div
+                  className="card"
+                  style={{
+                    padding: 24,
+                    borderTop: '3px solid var(--link)',
+                    height: '100%',
+                    boxSizing: 'border-box',
+                  }}
+                >
+                  <div style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    width: 48,
+                    height: 48,
+                    borderRadius: 12,
+                    background: 'color-mix(in srgb, var(--link) 15%, transparent)',
+                    fontSize: 24,
+                    marginBottom: 16,
+                  }}>
+                    {area.icon}
+                  </div>
+                  <h3 style={{ margin: '0 0 8px', fontSize: 15, fontWeight: 700 }}>{area.title}</h3>
+                  <p className="p" style={{ margin: 0 }}>{area.desc}</p>
+                </div>
+              </StaggerCard>
             ))}
-          </div>
+          </StaggerGrid>
         </section>
       </FadeUp>
 
@@ -130,21 +159,41 @@ export default function AboutPageContent() {
         <section style={{ marginBottom: 64 }}>
           <SectionHeading title="Current Goals" />
           <div className="card" style={{ padding: 32, display: 'flex', flexDirection: 'column', gap: 20 }}>
-            <p className="p">
-              I am currently working toward AZ-104 as the first step in a deliberate
-              multi-cloud strategy. Azure first, then AWS, then Google Cloud. The goal
-              is not to skim the surface of all three but to build real, validated
-              expertise across every major cloud platform and become the kind of engineer
-              who can work confidently in any environment.
-            </p>
-            <p className="p">
-              In parallel I am building Andificus, a personal web project built with
-              Next.js, TypeScript, and deployed to production on Vercel. It is where I
-              practice what I am learning in real conditions: architecture decisions,
-              performance, security headers, and deployment pipelines. The goal is the
-              same as it has always been. Understand how things actually work, not just
-              how to use them.
-            </p>
+            <div>
+              <div style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: 6,
+                background: 'color-mix(in srgb, var(--link) 15%, transparent)',
+                color: 'var(--link)',
+                borderRadius: 20,
+                padding: '4px 12px',
+                fontSize: 11,
+                fontWeight: 700,
+                letterSpacing: '0.08em',
+                textTransform: 'uppercase',
+                marginBottom: 12,
+              }}>
+                <span style={{ fontSize: 8 }}>●</span> In Progress
+              </div>
+              <p className="p" style={{ margin: 0 }}>
+                I am currently working toward AZ-104 as the first step in a deliberate
+                multi-cloud strategy. Azure first, then AWS, then Google Cloud. The goal
+                is not to skim the surface of all three but to build real, validated
+                expertise across every major cloud platform and become the kind of engineer
+                who can work confidently in any environment.
+              </p>
+            </div>
+            <div style={{ borderTop: '1px solid var(--border)', paddingTop: 20 }}>
+              <p className="p" style={{ margin: 0 }}>
+                In parallel I am building Andificus, a personal web project built with
+                Next.js, TypeScript, and deployed to production on Vercel. It is where I
+                practice what I am learning in real conditions: architecture decisions,
+                performance, security headers, and deployment pipelines. The goal is the
+                same as it has always been. Understand how things actually work, not just
+                how to use them.
+              </p>
+            </div>
           </div>
         </section>
       </FadeUp>
@@ -154,7 +203,7 @@ export default function AboutPageContent() {
         <section style={{ marginBottom: 64 }}>
           <SectionHeading title="Beyond Work" />
           <div className="card" style={{ padding: 32 }}>
-            <p className="p">
+            <p className="p" style={{ margin: 0 }}>
               Outside of technology I am working on a fantasy novel, a long-term project
               that takes as much patience and discipline as any technical challenge. I do
               art, graphic design, and photography, which is probably why I care as much
