@@ -155,22 +155,6 @@ export default function AboutPageContent() {
         </section>
       </FadeUp>
 
-      {/* ── Connect ── */}
-      <FadeUp delay={0.3}>
-        <section>
-          <SectionHeading title="Let's Connect" />
-          <div className="card" style={{ padding: 32, display: 'flex', flexDirection: 'column', gap: 20 }}>
-            <p className="p">
-              I am currently open to new opportunities in infrastructure, cloud, IT
-              generalist, or web development roles. Remote, hybrid, or local to the
-              Quad Cities area.
-            </p>
-            <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
-              <a href="https://www.linkedin.com/in/andywentzloff" target="_blank" rel="noopener noreferrer" className="btn btnPrimary">View LinkedIn Profile</a>
-            </div>
-          </div>
-        </section>
-      </FadeUp>
 
     </main>
   )
