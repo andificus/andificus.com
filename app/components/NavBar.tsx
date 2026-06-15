@@ -29,7 +29,7 @@ export default function NavBar() {
 
         <div className="navbarLinks">
           <a href="/about"    className="navLink">About</a>
-          <a href="/connect" className="navLink">Connect</a>
+          <a href="/#connect" className="navLink">Connect</a>
         </div>
 
         <div className="navbarRight">

@@ -116,7 +116,7 @@ export default function HomePageContent() {
           Technologist · Creator · Lifelong Learner
         </motion.p>
 
-        <HeroText text="Andrew Wentzloff." />
+        <HeroText text="Andrew Wentzloff" />
 
         <motion.p
           initial={{ opacity: 0, y: 16 }}
