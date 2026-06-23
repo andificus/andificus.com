@@ -31,14 +31,14 @@ export default function NavBar() {
             <Image
               src="/images/andificus-mark.png"
               alt="Andificus"
-              width={36}
-              height={36}
+              width={40}
+              height={40}
               priority
               style={{ display: 'block', objectFit: 'contain' }}
             />
             <span style={{
               fontFamily: "var(--font-cinzel), Georgia, serif",
-              fontSize: '0.95rem',
+              fontSize: '1.2rem',
               letterSpacing: '0.16em',
               color: 'var(--text)',
               userSelect: 'none',
