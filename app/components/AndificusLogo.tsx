@@ -20,14 +20,15 @@ export default function AndificusLogo({ height = 42, showWordmark = true }: Andi
       />
       {showWordmark && (
         <span style={{
-          fontFamily: "Cinzel, 'Times New Roman', serif",
-          fontSize: Math.round(height * 0.42),
-          letterSpacing: '0.12em',
+          fontFamily: "var(--font-cinzel), Georgia, 'Times New Roman', serif",
+          fontSize: Math.round(height * 0.5),
+          letterSpacing: '0.14em',
           color: 'var(--text)',
           lineHeight: 1,
           userSelect: 'none',
+          textTransform: 'uppercase',
         }}>
-          ANDIFICUS
+          Andificus
         </span>
       )}
     </span>
