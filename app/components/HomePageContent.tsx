@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import {
@@ -25,7 +26,7 @@ const FOCUS = [
   {
     icon: '☁️',
     title: 'Cloud Infrastructure',
-    desc: 'Azure AD, identity management, and enterprise-scale cloud operations. Building deep expertise across the major cloud platforms.',
+    desc: 'Microsoft Entra ID, identity management, and enterprise-scale cloud operations. Building deep expertise across the major cloud platforms.',
   },
   {
     icon: '💻',
@@ -107,6 +108,24 @@ export default function HomePageContent() {
 
       {/* ── Hero ── */}
       <section style={{ marginBottom: 80 }}>
+
+        {/* Mark */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.92 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+          style={{ marginBottom: 32 }}
+        >
+          <Image
+            src="/images/andificus-mark.png"
+            alt="Andificus"
+            width={160}
+            height={160}
+            priority
+            style={{ display: 'block' }}
+          />
+        </motion.div>
+
         <motion.p
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 0.75, y: 0 }}
