@@ -36,21 +36,12 @@ export const metadata: Metadata = {
     siteName: 'Andificus',
     type: 'website',
     locale: 'en_US',
-    images: [
-      {
-        url: '/images/preview.png',
-        width: 1200,
-        height: 630,
-        alt: 'Andificus — Andrew Wentzloff',
-      },
-    ],
   },
 
   twitter: {
     card: 'summary_large_image',
     title: 'Andificus',
     description: 'Andrew Wentzloff — Technologist, creator, and lifelong learner.',
-    images: ['/images/preview.png'],
   },
 
   robots: {
