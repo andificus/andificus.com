@@ -176,16 +176,14 @@ export default function HomePageContent() {
             }}
             style={{
               fontFamily: "var(--font-cinzel), Georgia, 'Times New Roman', serif",
-              /* mobile 30px → ~48px at 640px → 72px at 960px → 96px at 1280px */
-              fontSize: 'clamp(30px, 7.5vw, 96px)',
+              fontSize: 'clamp(28px, 6.5vw, 76px)',
               fontWeight: 400,
-              letterSpacing: '0.3em',
+              letterSpacing: '0.24em',
               textTransform: 'uppercase',
               color: 'rgba(217, 217, 217, 0.9)',
               lineHeight: 1.05,
               margin: '0 0 14px',
-              /* offset the tracking so the word appears visually centered */
-              textIndent: '0.3em',
+              whiteSpace: 'nowrap',
             }}
           >
             {'ANDIFICUS'.split('').map((char, i) => (
