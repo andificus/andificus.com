@@ -50,7 +50,6 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Andificus',
     description: 'Andrew Wentzloff — Technologist, creator, and lifelong learner.',
-    images: ['/images/preview.png'],
   },
 
   robots: {
