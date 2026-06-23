@@ -27,7 +27,7 @@ export default function AndificusLogo({ height = 42, showWordmark = true }: Andi
           lineHeight: 1,
           userSelect: 'none',
         }}>
-          Andificus
+          ANDIFICUS
         </span>
       )}
     </span>
