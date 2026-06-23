@@ -1,208 +1,252 @@
 @import "tailwindcss";
 
 /* ============================================================
-   LIGHT THEME (default)
+   DESIGN TOKENS — Dark only. No light theme.
    ============================================================ */
-:root,
-html[data-theme="light"] {
-  --bg: #eef1f6;
-  --text: #111111;
-  --card: rgba(255, 255, 255, 0.65);
-  --border: rgba(0, 0, 0, 0.08);
-  --shadow: rgba(0, 0, 0, 0.10);
+:root {
+  /* Surfaces */
+  --bg:             #0a0d14;
+  --surface:        #111621;
+  --surface-raised: #18202e;
 
-  --btn-bg: #0b0d12;
-  --btn-text: #ffffff;
-  --btn-border: rgba(0, 0, 0, 0.16);
+  /* Lines */
+  --border:         rgba(196, 208, 232, 0.10);
+  --border-strong:  rgba(196, 208, 232, 0.18);
 
-  --link: #0b0d12;
-  --muted: rgba(0, 0, 0, 0.65);
+  /* Text */
+  --text:           #eef1f7;
+  --text-muted:     #97a3bb;
 
-  --input-bg: rgba(255, 255, 255, 0.85);
-  --input-border: rgba(0, 0, 0, 0.18);
+  /* Accents — use sparingly */
+  --gold:           #d4b06a;
+  --gold-bright:    #e6c585;
+  --amber:          #d99a5b;
+  --starlight:      #f5edd8;
 
-  --glass-highlight: rgba(255, 255, 255, 0.90);
-  --glass-shadow: rgba(0, 0, 0, 0.08);
+  /* Rare accents — special moments only */
+  --sapphire:       #5b8def;
+  --teal:           #46b3a3;
+  --amethyst:       #a585e0;
 
-  --status-error: #b00020;
-  --status-success: #0a7a2f;
-  --status-info: #444444;
+  /* Semantic aliases — backward compat with existing components */
+  --link:           #d4b06a;
+  --muted:          #97a3bb;
+  --card:           #111621;
+  --shadow:         rgba(0, 0, 0, 0.45);
+  --btn-bg:         transparent;
+  --btn-text:       #d4b06a;
+  --btn-border:     rgba(212, 176, 106, 0.5);
 }
 
 /* ============================================================
-   DARK THEME
+   BASE
    ============================================================ */
-html[data-theme="dark"] {
-  --bg: #0b0d10;
-  --text: #f2f2f2;
-  --card: rgba(17, 21, 27, 0.72);
-  --border: rgba(255, 255, 255, 0.10);
-  --shadow: rgba(0, 0, 0, 0.35);
-
-  --btn-bg: #f2f2f2;
-  --btn-text: #0b0d12;
-  --btn-border: rgba(255, 255, 255, 0.18);
-
-  --link: #f2f2f2;
-  --muted: rgba(255, 255, 255, 0.72);
-
-  --input-bg: #0f1318;
-  --input-border: rgba(255, 255, 255, 0.18);
-
-  --glass-highlight: rgba(255, 255, 255, 0.10);
-  --glass-shadow: rgba(0, 0, 0, 0.55);
-
-  --status-error: #ff6b6b;
-  --status-success: #4caf7d;
-  --status-info: #aaaaaa;
+*, *::before, *::after {
+  box-sizing: border-box;
 }
 
-/* ============================================================
-   BODY — background + gradients per theme
-   ============================================================ */
 body {
   background: var(--bg);
   color: var(--text);
-}
-
-/* Light mode gradient — soft blue tones so glass cards pop */
-html[data-theme="light"] body,
-:root body {
-  background-image:
-    radial-gradient(800px 500px at 10% 0%, rgba(180, 210, 255, 0.45), transparent 60%),
-    radial-gradient(700px 450px at 90% 10%, rgba(120, 180, 255, 0.25), transparent 55%),
-    radial-gradient(900px 600px at 50% 100%, rgba(140, 220, 200, 0.18), transparent 60%);
-}
-
-/* Dark mode gradient — deep blue/green tones */
-html[data-theme="dark"] body {
-  background-image:
-    radial-gradient(800px 500px at 10% 0%, rgba(30, 60, 120, 0.25), transparent 60%),
-    radial-gradient(700px 450px at 90% 10%, rgba(60, 80, 180, 0.15), transparent 55%),
-    radial-gradient(900px 600px at 50% 100%, rgba(20, 120, 80, 0.12), transparent 60%);
-}
-
-/* ============================================================
-   CARD
-   ============================================================ */
-.card {
-  background: var(--card);
-  border: 1px solid color-mix(in srgb, var(--border) 70%, transparent);
-  border-radius: 16px;
-  padding: 18px;
-
-  backdrop-filter: blur(16px) saturate(170%);
-  -webkit-backdrop-filter: blur(16px) saturate(170%);
-
-  box-shadow:
-    0 18px 50px var(--shadow),
-    inset 0 1px 0 var(--glass-highlight);
-
-  background-image:
-    linear-gradient(
-      to bottom right,
-      rgba(255, 255, 255, 0.22),
-      rgba(255, 255, 255, 0.06),
-      rgba(0, 0, 0, 0.02)
-    );
-  background-blend-mode: overlay;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
 /* ============================================================
    TYPOGRAPHY
    ============================================================ */
-.h2 {
-  margin: 0 0 8px 0;
-  font-size: 16px;
-  letter-spacing: -0.01em;
+
+/* Display — hero scale */
+.display {
+  font-family: var(--font-cinzel), Georgia, 'Times New Roman', serif;
+  font-size: clamp(2.75rem, 6vw, 4.5rem);
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  line-height: 1.1;
+  color: var(--text);
+  margin: 0;
 }
 
-.p,
-.list {
+/* Page-level headings — h1 */
+.titleHeading {
+  font-family: var(--font-cinzel), Georgia, 'Times New Roman', serif;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  line-height: 1.2;
+  color: var(--text);
+  margin: 0 0 16px;
+}
+
+/* Section headings — h2 */
+.h2 {
+  font-family: var(--font-cinzel), Georgia, 'Times New Roman', serif;
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text);
+  margin: 0 0 8px;
+}
+
+/* Card headings — h3 */
+.h3 {
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text);
+  margin: 0 0 8px;
+}
+
+/* Eyebrow label — above headings */
+.eyebrow {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+/* Body copy */
+.p {
+  font-size: 0.95rem;
+  line-height: 1.78;
+  color: var(--text-muted);
   margin: 0;
-  font-size: 14px;
-  line-height: 1.7;
-  color: var(--muted);
 }
 
 /* ============================================================
-   BUTTONS
+   CARD — solid architectural surface, no glass
+   ============================================================ */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  padding: 18px;
+  box-shadow: 0 4px 32px rgba(0, 0, 0, 0.35);
+  position: relative;
+}
+
+/* Corner bracket ornament on cards — CSS only, no extra markup */
+.card::before,
+.card::after {
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-color: rgba(212, 176, 106, 0.3);
+  border-style: solid;
+  pointer-events: none;
+}
+
+.card::before {
+  top: -1px;
+  left: -1px;
+  border-width: 1px 0 0 1px;
+}
+
+.card::after {
+  bottom: -1px;
+  right: -1px;
+  border-width: 0 1px 1px 0;
+}
+
+/* ============================================================
+   BUTTONS — sharp corners, gold accent
    ============================================================ */
 .btn {
   display: inline-block;
-  padding: 10px 14px;
-  border-radius: 10px;
+  padding: 10px 20px;
+  border-radius: 0;
   border: 1px solid var(--btn-border);
   text-decoration: none;
-  font-size: 14px;
-  transition: transform 120ms ease, opacity 120ms ease;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 150ms ease, color 150ms ease, border-color 150ms ease;
+  font-family: inherit;
+  line-height: 1;
 }
 
 .btnPrimary {
-  background: var(--btn-bg);
-  color: var(--btn-text);
+  background: transparent;
+  color: var(--gold);
+  border-color: rgba(212, 176, 106, 0.6);
+}
+
+.btnPrimary:hover {
+  background: rgba(212, 176, 106, 0.08);
+  border-color: var(--gold);
 }
 
 .btnGhost {
   background: transparent;
-  color: var(--link);
+  color: var(--text-muted);
+  border-color: var(--border-strong);
 }
 
-.btn:hover {
-  transform: translateY(-1px);
+.btnGhost:hover {
+  color: var(--text);
+  border-color: rgba(196, 208, 232, 0.35);
 }
 
-/* Better focus for nav links + buttons */
+/* Focus — accessible gold outline */
 .navLink:focus-visible,
 .btn:focus-visible {
-  outline: 2px solid var(--link);
+  outline: 2px solid var(--gold);
   outline-offset: 3px;
-  border-radius: 10px;
 }
 
 /* ============================================================
-   NAVBAR
+   DIVIDER — celestial section separator
+   ============================================================ */
+.divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 0;
+  width: 100%;
+  gap: 0;
+}
+
+.dividerLine {
+  height: 1px;
+  flex: 1;
+  max-width: 160px;
+  background: var(--border);
+}
+
+.dividerNode {
+  width: 7px;
+  height: 7px;
+  border: 1px solid var(--gold);
+  transform: rotate(45deg);
+  margin: 0 14px;
+  flex-shrink: 0;
+  opacity: 0.7;
+}
+
+/* ============================================================
+   NAVBAR — solid obsidian, hairline border
    ============================================================ */
 .navbar {
   position: sticky;
   top: 0;
   z-index: 50;
-
-  background: var(--card);
+  background: var(--bg);
   border-bottom: 1px solid var(--border);
-
-  backdrop-filter: blur(18px) saturate(180%);
-  -webkit-backdrop-filter: blur(18px) saturate(180%);
-
-  box-shadow:
-    0 10px 30px var(--shadow),
-    inset 0 1px 0 var(--glass-highlight);
-
-  background-image:
-    linear-gradient(
-      to right,
-      rgba(255, 255, 255, 0.16),
-      rgba(255, 255, 255, 0.06),
-      rgba(0, 0, 0, 0.02)
-    );
-  background-blend-mode: overlay;
-}
-
-.navLink {
-  font-size: 14px;
-  text-decoration: none;
-  color: var(--link);
-  opacity: 0.8;
-}
-
-.navLink:hover {
-  opacity: 1;
 }
 
 .navbarInner {
   max-width: 1100px;
   margin: 0 auto;
-  padding: 14px 24px;
+  padding: 14px 28px;
   display: flex;
   align-items: center;
   gap: 18px;
@@ -213,207 +257,161 @@ html[data-theme="dark"] body {
   align-items: center;
   text-decoration: none;
   color: var(--text);
+  gap: 10px;
 }
 
 .brandLogo {
-  height: 42px;
+  height: 40px;
   width: auto;
   display: block;
 }
 
 .navbarLinks {
   display: flex;
+  gap: 32px;
+  margin-left: auto;
+}
+
+.navLink {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--text-muted);
+  transition: color 150ms ease;
+  padding: 4px 0;
+}
+
+.navLink:hover {
+  color: var(--gold);
+}
+
+.navbarRight {
+  display: flex;
   gap: 14px;
+  align-items: center;
+}
+
+/* Hamburger — mobile only */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 44px;
+  height: 44px;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+.hamburgerLine {
+  display: block;
+  height: 1px;
+  width: 22px;
+  background: var(--text);
+  transition: transform 300ms ease, opacity 300ms ease;
+  transform-origin: center;
 }
 
 @media (max-width: 640px) {
   .brandLogo {
-    height: 36px;
+    height: 34px;
   }
   .navbarLinks {
     display: none;
   }
-}
-
-
-.navbarRight {
-  margin-left: auto;
-  display: flex;
-  gap: 14px;
-  align-items: center;
-}
-
-.navbarEmail {
-  font-size: 13px;
-  color: var(--muted);
-  white-space: nowrap;
+  .navbarRight {
+    display: none;
+  }
+  .hamburger {
+    display: flex;
+  }
 }
 
 /* ============================================================
-   AVATAR + USER MENU
+   MOBILE MENU OVERLAY
    ============================================================ */
-.avatarMenuWrap {
-  position: relative;
-  display: flex;
-  align-items: center;
-  z-index: 60;
-}
-
-.avatarImg {
-  width: 32px;
-  height: 32px;
-  object-fit: cover;
-  border-radius: 999px;
-}
-
-.avatarButton {
-  width: 38px;
-  height: 38px;
-  border-radius: 999px;
-  border: 1px solid var(--border);
-  background: var(--card);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-
-  backdrop-filter: blur(16px) saturate(180%);
-  -webkit-backdrop-filter: blur(16px) saturate(180%);
-
-  box-shadow:
-    0 10px 22px var(--shadow),
-    inset 0 1px 0 var(--glass-highlight);
-}
-
-.avatarButton:hover {
-  transform: translateY(-1px);
-}
-
-.avatarButton:focus-visible {
-  outline: 2px solid var(--link);
-  outline-offset: 3px;
-}
-
-.avatarInitials {
-  font-weight: 700;
-  font-size: 13px;
-  color: var(--text);
-}
-
-.userMenu {
-  position: absolute;
-  top: calc(100% + 10px);
-  right: 0;
-  min-width: 250px;
-  padding: 12px;
-  border-radius: 16px;
-  z-index: 70;
-}
-
-.userMenuHeader {
+.mobileOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: rgba(10, 13, 20, 0.97);
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  padding: 4px 4px 10px 4px;
+  align-items: center;
+  justify-content: center;
+  gap: 36px;
+  /* Decorative faint diamond behind links */
+  overflow: hidden;
 }
 
-.userMenuName {
-  font-weight: 600;
-  color: var(--text);
+.mobileOverlay::before {
+  content: '';
+  position: absolute;
+  width: 280px;
+  height: 280px;
+  border: 1px solid rgba(212, 176, 106, 0.06);
+  transform: rotate(45deg);
+  pointer-events: none;
 }
 
-.userMenuEmail {
-  color: var(--muted);
-  font-size: 12px;
+.mobileNavLink {
+  font-family: var(--font-cinzel), Georgia, serif;
+  font-size: 1.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(238, 241, 247, 0.8);
+  text-decoration: none;
+  transition: color 150ms ease;
+  /* Minimum touch target */
+  padding: 8px 0;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
 }
 
-.userMenuDivider {
-  height: 1px;
-  background: var(--border);
-  margin: 10px 0;
+.mobileNavLink:hover {
+  color: var(--gold);
 }
 
-.userMenuItem {
-  width: 100%;
+.mobileTagline {
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 10px;
-  border-radius: 12px;
-  text-decoration: none;
-  color: var(--text);
-  border: 1px solid transparent;
-  background: transparent;
-  cursor: pointer;
-  font: inherit;
-  text-align: left;
+  font-size: 0.62rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: rgba(212, 176, 106, 0.45);
+  margin-top: 4px;
 }
 
-.userMenuItem:hover {
-  border-color: var(--border);
-  background: color-mix(in srgb, var(--card) 80%, transparent);
-}
-
-.userMenuItem:focus-visible {
-  outline: 2px solid var(--link);
-  outline-offset: 2px;
+.mobileTaglineDot {
+  width: 4px;
+  height: 4px;
+  background: rgba(212, 176, 106, 0.45);
+  transform: rotate(45deg);
+  flex-shrink: 0;
 }
 
 /* ============================================================
-   INPUT
-   ============================================================ */
-.input {
-  padding: 10px;
-  width: 100%;
-  border-radius: 10px;
-  border: 1px solid var(--input-border);
-  background: var(--input-bg);
-  color: var(--text);
-
-  box-shadow:
-    inset 0 0 0 1px color-mix(in srgb, var(--input-border) 70%, transparent),
-    inset 0 1px 2px rgba(0, 0, 0, 0.15);
-}
-
-.input:focus {
-  outline: none;
-  border-color: var(--link);
-  box-shadow:
-    inset 0 0 0 1px var(--link),
-    0 0 0 3px color-mix(in srgb, var(--link) 25%, transparent);
-}
-
-/* ============================================================
-   FOOTER
+   FOOTER — solid surface, hairline top
    ============================================================ */
 .footer {
-  position: relative;
-  margin-top: 80px;
-
-  background: var(--card);
+  background: var(--surface);
   border-top: 1px solid var(--border);
-
-  backdrop-filter: blur(18px) saturate(180%);
-  -webkit-backdrop-filter: blur(18px) saturate(180%);
-
-  box-shadow:
-    0 -12px 30px var(--shadow),
-    inset 0 1px 0 var(--glass-highlight);
-
-  background-image:
-    linear-gradient(
-      to right,
-      rgba(255, 255, 255, 0.14),
-      rgba(255, 255, 255, 0.05),
-      rgba(0, 0, 0, 0.02)
-    );
-  background-blend-mode: overlay;
+  margin-top: 80px;
 }
 
 .footer-inner {
   max-width: 1100px;
   margin: 0 auto;
-  padding: 24px 32px;
+  padding: 24px 28px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -429,160 +427,45 @@ html[data-theme="dark"] body {
 
 .footer-right {
   display: flex;
-  gap: 14px;
+  gap: 20px;
   align-items: center;
 }
 
 .footer .brand {
-  font-size: 14px;
+  font-size: 0.7rem;
   font-weight: 600;
-  letter-spacing: -0.01em;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
   color: var(--text);
 }
 
 .footer .copyright {
-  font-size: 12px;
-  color: var(--muted);
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  letter-spacing: 0.06em;
 }
 
 .footer a {
-  color: var(--link);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
   text-decoration: none;
-  opacity: 0.85;
+  transition: color 150ms ease;
 }
 
 .footer a:hover {
-  opacity: 1;
-}
-
-.footer-right a {
-  font-size: 12px;
-  letter-spacing: 0.04em;
-  opacity: 0.75;
-}
-
-.footer-right a:hover {
-  opacity: 1;
+  color: var(--gold);
 }
 
 /* ============================================================
-   RESPONSIVE
+   RESPONSIVE — general
    ============================================================ */
-@media (max-width: 900px) {
-  .homeHero {
-    grid-template-columns: 1fr !important;
+@media (max-width: 640px) {
+  .footer-inner {
+    padding: 20px 20px;
   }
-}
-
-/* ============================================================
-   ILLUSTRATION ANIMATIONS
-   Append these to the bottom of globals.css
-   ============================================================ */
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes fadeSlideUp {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes fadeSlideRight {
-  from { opacity: 0; transform: translateX(-8px); }
-  to { opacity: 1; transform: translateX(0); }
-}
-
-@keyframes popIn {
-  0% { opacity: 0; transform: scale(0.85); }
-  70% { transform: scale(1.04); }
-  100% { opacity: 1; transform: scale(1); }
-}
-
-@keyframes floatCard {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-5px); }
-}
-
-@keyframes pulse {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.5; transform: scale(1.3); }
-}
-
-@keyframes ripple {
-  0% { r: 10; opacity: 0.4; }
-  100% { r: 22; opacity: 0; }
-}
-
-@keyframes drawLine {
-  to { stroke-dashoffset: 0; }
-}
-
-@keyframes growBar {
-  from { transform: scaleY(0); }
-  to { transform: scaleY(1); }
-}
-
-@keyframes expandWidth {
-  from { width: 0; }
-  to { width: 100%; }
-}
-
-@keyframes expandRing {
-  0% { r: 30; opacity: 0.4; }
-  100% { r: 80; opacity: 0; }
-}
-
-@keyframes spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-@keyframes orbitSlow {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-@keyframes orbit1 {
-  from { transform: rotate(0deg) translateX(48px) rotate(0deg); }
-  to { transform: rotate(360deg) translateX(48px) rotate(-360deg); }
-}
-
-@keyframes orbit2 {
-  from { transform: rotate(120deg) translateX(52px) rotate(-120deg); }
-  to { transform: rotate(480deg) translateX(52px) rotate(-480deg); }
-}
-
-@keyframes orbit3 {
-  from { transform: rotate(240deg) translateX(44px) rotate(-240deg); }
-  to { transform: rotate(600deg) translateX(44px) rotate(-600deg); }
-}
-
-@keyframes scanRight {
-  0% { transform: translateX(-300px); opacity: 0; }
-  10% { opacity: 1; }
-  90% { opacity: 1; }
-  100% { transform: translateX(500px); opacity: 0; }
-}
-
-@keyframes spinGauge {
-  0% { stroke-dasharray: 60 90; }
-  50% { stroke-dasharray: 120 30; }
-  100% { stroke-dasharray: 60 90; }
-}
-
-@keyframes countUp {
-  from { opacity: 0; transform: translateY(6px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes successFlash {
-  0%, 80%, 100% { opacity: 0; }
-  90% { opacity: 1; }
-}
-
-@keyframes typingCursor {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
+  .footer-right {
+    gap: 12px;
+  }
 }

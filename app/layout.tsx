@@ -1,20 +1,22 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
+import type { Metadata } from 'next'
+import { Geist, Cinzel } from 'next/font/google'
+import './globals.css'
 import NavBar from './components/NavBar'
 import ThemeProvider from './ThemeProvider'
 import Footer from './components/Footer'
 
-
 const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
+  variable: '--font-geist-sans',
+  subsets: ['latin'],
+  display: 'swap',
+})
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+const cinzel = Cinzel({
+  variable: '--font-cinzel',
+  subsets: ['latin'],
+  weight: ['400', '600', '700'],
+  display: 'swap',
+})
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://andificus.com'),
@@ -25,21 +27,21 @@ export const metadata: Metadata = {
   },
 
   description:
-    'Andrew Wentzloff — IT professional and developer. Building modern web applications with Next.js, TypeScript, and a focus on clean fundamentals.',
+    'Andrew Wentzloff — Technologist, creator, and lifelong learner. Building software, exploring cloud infrastructure, and creating at the intersection of technology and craft.',
 
   openGraph: {
     title: 'Andificus',
-    description:
-      'Andrew Wentzloff — Technologist, creator, and lifelong learner.',
+    description: 'Andrew Wentzloff — Technologist, creator, and lifelong learner.',
     url: 'https://andificus.com',
     siteName: 'Andificus',
     type: 'website',
+    locale: 'en_US',
     images: [
       {
         url: '/images/preview.png',
         width: 1200,
         height: 630,
-        alt: 'Andificus preview image',
+        alt: 'Andificus — Andrew Wentzloff',
       },
     ],
   },
@@ -47,27 +49,29 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Andificus',
-    description:
-      'Andrew Wentzloff — Technologist, creator, and lifelong learner.',
+    description: 'Andrew Wentzloff — Technologist, creator, and lifelong learner.',
     images: ['/images/preview.png'],
   },
-};
+
+  robots: {
+    index: true,
+    follow: true,
+  },
+}
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: {
+  children: React.ReactNode
+}) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className={`${geistSans.variable} ${cinzel.variable} antialiased`}>
         <ThemeProvider />
         <NavBar />
         {children}
         <Footer />
       </body>
     </html>
-  );
+  )
 }
