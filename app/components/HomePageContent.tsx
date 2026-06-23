@@ -8,7 +8,6 @@ import {
   StaggerGrid,
   StaggerCard,
   SectionHeading,
-  HeroText,
 } from './Motion'
 
 const STACK = [
@@ -99,35 +98,17 @@ export default function HomePageContent() {
     <main>
 
       {/* ══════════════════════════════════════════════════════
-          HERO — full viewport, centered monument
+          HERO — full viewport height, centered monument
       ══════════════════════════════════════════════════════ */}
       <section style={{
         minHeight: '100dvh',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        position: 'relative',
-        overflow: 'hidden',
         padding: '80px 28px 60px',
+        /* No overflow: hidden — it clips drop-shadow filters */
       }}>
-
-        {/* Ambient glow — wide soft gold behind the mark */}
         <div style={{
-          position: 'absolute',
-          top: '50%',
-          left: '50%',
-          transform: 'translate(-50%, -60%)',
-          width: 500,
-          height: 500,
-          background: 'rgba(212, 168, 67, 0.05)',
-          borderRadius: '50%',
-          filter: 'blur(100px)',
-          pointerEvents: 'none',
-        }} />
-
-        <div style={{
-          position: 'relative',
-          zIndex: 1,
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
@@ -136,68 +117,135 @@ export default function HomePageContent() {
           width: '100%',
         }}>
 
-          {/* Mark */}
+          {/* ── Mark + glow ── */}
           <motion.div
             initial={{ opacity: 0, scale: 0.88 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1.5, ease: 'easeOut' }}
-            style={{ marginBottom: 28 }}
+            style={{
+              position: 'relative',
+              marginBottom: 32,
+              /* inline-block so the wrapper shrinks to image size,
+                 which lets the glow div use % sizing correctly */
+              display: 'inline-block',
+            }}
           >
+            {/* Ambient glow — radial gradient avoids the blur-clipping issue on mobile */}
+            <div
+              aria-hidden="true"
+              style={{
+                position: 'absolute',
+                top: '50%',
+                left: '50%',
+                transform: 'translate(-50%, -50%)',
+                width: '200%',
+                paddingBottom: '200%',
+                background: 'radial-gradient(circle at center, rgba(212,168,67,0.14) 0%, rgba(212,168,67,0.06) 35%, transparent 65%)',
+                pointerEvents: 'none',
+                zIndex: 0,
+              }}
+            />
+
+            {/* The mark itself */}
             <Image
               src="/images/andificus-mark.png"
-              alt="Andificus"
-              width={280}
-              height={280}
+              alt="Andificus symbol"
+              width={384}
+              height={384}
               priority
               style={{
                 display: 'block',
                 objectFit: 'contain',
-                width: 'clamp(180px, 28vw, 280px)',
+                /* clamp gives: 256px mobile → 288px ~720px → 384px desktop */
+                width: 'clamp(256px, 40vw, 384px)',
                 height: 'auto',
-                filter: 'drop-shadow(0 0 60px rgba(200, 160, 80, 0.5))',
+                filter: 'drop-shadow(0 0 60px rgba(200,160,80,0.5))',
+                position: 'relative',
+                zIndex: 1,
               }}
             />
           </motion.div>
 
-          {/* Eyebrow */}
+          {/* ── ANDIFICUS heading ── */}
+          <motion.h1
+            initial="hidden"
+            animate="visible"
+            variants={{
+              visible: { transition: { staggerChildren: 0.06 } },
+              hidden: {},
+            }}
+            style={{
+              fontFamily: "var(--font-cinzel), Georgia, 'Times New Roman', serif",
+              /* mobile 30px → ~48px at 640px → 72px at 960px → 96px at 1280px */
+              fontSize: 'clamp(30px, 7.5vw, 96px)',
+              fontWeight: 400,
+              letterSpacing: '0.3em',
+              textTransform: 'uppercase',
+              color: 'rgba(217, 217, 217, 0.9)',
+              lineHeight: 1.05,
+              margin: '0 0 14px',
+              /* offset the tracking so the word appears visually centered */
+              textIndent: '0.3em',
+            }}
+          >
+            {'ANDIFICUS'.split('').map((char, i) => (
+              <motion.span
+                key={i}
+                style={{ display: 'inline-block' }}
+                variants={{
+                  hidden: { opacity: 0, y: 16 },
+                  visible: {
+                    opacity: 1,
+                    y: 0,
+                    transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
+                  },
+                }}
+              >
+                {char}
+              </motion.span>
+            ))}
+          </motion.h1>
+
+          {/* ── Technologist · Creator · Lifelong Learner ── */}
           <motion.p
-            className="eyebrow"
-            initial={{ opacity: 0, y: 10 }}
+            initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 0.8, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            style={{ marginBottom: 4 }}
+            transition={{ duration: 0.6, delay: 0.7 }}
+            style={{
+              fontSize: 'clamp(10px, 1.2vw, 14px)',
+              color: '#D4A843',
+              letterSpacing: '0.28em',
+              textTransform: 'uppercase',
+              margin: '0 0 20px',
+              textIndent: '0.28em',
+              fontWeight: 500,
+            }}
           >
             Technologist · Creator · Lifelong Learner
           </motion.p>
 
-          {/* Name */}
-          <div style={{ textAlign: 'center' }}>
-            <HeroText text="Andrew Wentzloff" />
-          </div>
-
-          {/* Tagline */}
+          {/* ── Tagline ── */}
           <motion.p
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 0.85, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.6, delay: 0.9, ease: [0.22, 1, 0.36, 1] }}
             style={{
               fontSize: '1rem',
-              lineHeight: 1.7,
+              lineHeight: 1.75,
               color: 'var(--text-muted)',
-              maxWidth: 500,
-              marginBottom: 36,
-              marginTop: 4,
+              maxWidth: 480,
+              margin: '0 0 36px',
             }}
           >
             Building software, exploring cloud infrastructure, creating visual art,
             and documenting the journey.
           </motion.p>
 
-          {/* CTAs */}
+          {/* ── CTAs ── */}
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.5, delay: 1.1, ease: [0.22, 1, 0.36, 1] }}
             style={{ display: 'flex', gap: 14, flexWrap: 'wrap', justifyContent: 'center' }}
           >
             <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}>
@@ -208,7 +256,7 @@ export default function HomePageContent() {
             </motion.div>
           </motion.div>
 
-          {/* Scroll indicator */}
+          {/* ── Scroll indicator ── */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -219,7 +267,7 @@ export default function HomePageContent() {
             <div style={{
               width: 1,
               height: 56,
-              background: 'linear-gradient(to bottom, rgba(212, 168, 67, 0.6), transparent)',
+              background: 'linear-gradient(to bottom, rgba(212,168,67,0.6), transparent)',
               margin: '0 auto',
             }} />
           </motion.div>
@@ -227,7 +275,9 @@ export default function HomePageContent() {
         </div>
       </section>
 
-      {/* Page content below the fold */}
+      {/* ══════════════════════════════════════════════════════
+          CONTENT — below the fold
+      ══════════════════════════════════════════════════════ */}
       <div style={{ maxWidth: 980, margin: '0 auto', padding: '0 28px 80px' }}>
 
         {/* ── Current Focus ── */}
@@ -244,11 +294,23 @@ export default function HomePageContent() {
         }}>
           {FOCUS.map((item) => (
             <StaggerCard key={item.title}>
-              <div className="card" style={{ padding: 28, borderTop: '2px solid var(--gold)', height: '100%', boxSizing: 'border-box' }}>
-                <div style={{ fontSize: 28, marginBottom: 16 }}>
+              <div className="card" style={{
+                padding: 28,
+                borderTop: '2px solid var(--gold)',
+                height: '100%',
+                boxSizing: 'border-box',
+              }}>
+                <div style={{ fontSize: 28, marginBottom: 14 }}>
                   {item.icon}
                 </div>
-                <h3 style={{ margin: '0 0 10px', fontSize: 13, fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--text)' }}>
+                <h3 style={{
+                  margin: '0 0 10px',
+                  fontSize: 12,
+                  fontWeight: 600,
+                  letterSpacing: '0.1em',
+                  textTransform: 'uppercase',
+                  color: 'var(--text)',
+                }}>
                   {item.title}
                 </h3>
                 <p className="p" style={{ margin: 0 }}>{item.desc}</p>
@@ -282,7 +344,12 @@ export default function HomePageContent() {
 
         {/* ── Connect ── */}
         <FadeUp>
-          <div id="connect" className="card" style={{ padding: 40, display: 'flex', flexDirection: 'column', gap: 20 }}>
+          <div id="connect" className="card" style={{
+            padding: 40,
+            display: 'flex',
+            flexDirection: 'column',
+            gap: 20,
+          }}>
             <div>
               <h2 className="h2" style={{ margin: '0 0 12px' }}>Connect</h2>
               <p className="p" style={{ maxWidth: 520, margin: 0 }}>
