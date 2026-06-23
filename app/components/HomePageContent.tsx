@@ -53,7 +53,7 @@ function StackCard({ item, index }: { item: typeof STACK[0], index: number }) {
       }}
       whileHover={{
         y: -4,
-        boxShadow: '0 0 0 1.5px var(--link), 0 8px 24px var(--shadow)',
+        boxShadow: '0 0 0 1px var(--gold), 0 8px 24px var(--shadow)',
         transition: { duration: 0.2 },
       }}
       className="card"
@@ -61,41 +61,33 @@ function StackCard({ item, index }: { item: typeof STACK[0], index: number }) {
     >
       <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6 }}>
         <motion.span
-          initial={{ scale: 0, opacity: 0 }}
-          whileInView={{ scale: 1, opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.3, delay: 0.2 + index * 0.05 }}
-          style={{ display: 'inline-flex', flexShrink: 0 }}
-        >
-          <motion.span
-            animate={{ scale: [1, 1.5, 1], opacity: [0.9, 0.4, 0.9] }}
-            transition={{ duration: 2, delay: 0.5 + index * 0.15, repeat: 2, ease: 'easeInOut' }}
-            style={{
-              display: 'block',
-              width: 7,
-              height: 7,
-              borderRadius: '50%',
-              background: 'var(--link)',
-              flexShrink: 0,
-            }}
-          />
-        </motion.span>
-        <span style={{ fontWeight: 700, fontSize: 14, color: 'var(--text)' }}>
+          animate={{ scale: [1, 1.5, 1], opacity: [0.9, 0.4, 0.9] }}
+          transition={{ duration: 2, delay: 0.5 + index * 0.15, repeat: 2, ease: 'easeInOut' }}
+          style={{
+            display: 'block',
+            width: 6,
+            height: 6,
+            borderRadius: '50%',
+            background: 'var(--gold)',
+            flexShrink: 0,
+          }}
+        />
+        <span style={{ fontWeight: 600, fontSize: 13, color: 'var(--text)' }}>
           {item.name}
         </span>
         <span style={{
-          fontSize: 10,
+          fontSize: 9,
           fontWeight: 600,
-          letterSpacing: '0.08em',
+          letterSpacing: '0.1em',
           textTransform: 'uppercase',
-          color: 'var(--link)',
-          opacity: 0.75,
+          color: 'var(--gold)',
+          opacity: 0.7,
           marginLeft: 'auto',
         }}>
           {item.category}
         </span>
       </div>
-      <p className="p" style={{ fontSize: 13, margin: 0 }}>
+      <p className="p" style={{ fontSize: 12, margin: 0 }}>
         {item.description}
       </p>
     </motion.div>
@@ -104,156 +96,225 @@ function StackCard({ item, index }: { item: typeof STACK[0], index: number }) {
 
 export default function HomePageContent() {
   return (
-    <main style={{ maxWidth: 980, margin: '0 auto', padding: '72px 28px' }}>
+    <main>
 
-      {/* ── Hero ── */}
-      <section style={{ marginBottom: 80 }}>
+      {/* ══════════════════════════════════════════════════════
+          HERO — full viewport, centered monument
+      ══════════════════════════════════════════════════════ */}
+      <section style={{
+        minHeight: '100dvh',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        position: 'relative',
+        overflow: 'hidden',
+        padding: '80px 28px 60px',
+      }}>
 
-        {/* Mark */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.92 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-          style={{ marginBottom: 32 }}
-        >
-          <Image
-            src="/images/andificus-mark.png"
-            alt="Andificus"
-            width={160}
-            height={160}
-            priority
-            style={{ display: 'block' }}
-          />
-        </motion.div>
+        {/* Ambient glow — wide soft gold behind the mark */}
+        <div style={{
+          position: 'absolute',
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -60%)',
+          width: 500,
+          height: 500,
+          background: 'rgba(212, 168, 67, 0.05)',
+          borderRadius: '50%',
+          filter: 'blur(100px)',
+          pointerEvents: 'none',
+        }} />
 
-        <motion.p
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 0.75, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          style={{ letterSpacing: '0.12em', textTransform: 'uppercase', fontSize: 12, marginBottom: 0 }}
-        >
-          Technologist · Creator · Lifelong Learner
-        </motion.p>
+        <div style={{
+          position: 'relative',
+          zIndex: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          textAlign: 'center',
+          maxWidth: 700,
+          width: '100%',
+        }}>
 
-        <HeroText text="Andrew Wentzloff" />
-
-        <motion.p
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 0.9, y: 0 }}
-          transition={{ duration: 0.55, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
-          style={{ fontSize: 18, lineHeight: 1.7, maxWidth: 620, margin: '0 0 32px' }}
-        >
-          Building software, exploring cloud infrastructure, creating visual art,
-          and documenting the journey.
-        </motion.p>
-
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}
-        >
-          <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}>
-            <Link href="/about" className="btn btnPrimary">About Me</Link>
+          {/* Mark */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.88 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1.5, ease: 'easeOut' }}
+            style={{ marginBottom: 28 }}
+          >
+            <Image
+              src="/images/andificus-mark.png"
+              alt="Andificus"
+              width={280}
+              height={280}
+              priority
+              style={{
+                display: 'block',
+                objectFit: 'contain',
+                width: 'clamp(180px, 28vw, 280px)',
+                height: 'auto',
+                filter: 'drop-shadow(0 0 60px rgba(200, 160, 80, 0.5))',
+              }}
+            />
           </motion.div>
-          <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}>
-            <a href="#connect" className="btn btnGhost">Connect</a>
+
+          {/* Eyebrow */}
+          <motion.p
+            className="eyebrow"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 0.8, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            style={{ marginBottom: 4 }}
+          >
+            Technologist · Creator · Lifelong Learner
+          </motion.p>
+
+          {/* Name */}
+          <div style={{ textAlign: 'center' }}>
+            <HeroText text="Andrew Wentzloff" />
+          </div>
+
+          {/* Tagline */}
+          <motion.p
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 0.85, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            style={{
+              fontSize: '1rem',
+              lineHeight: 1.7,
+              color: 'var(--text-muted)',
+              maxWidth: 500,
+              marginBottom: 36,
+              marginTop: 4,
+            }}
+          >
+            Building software, exploring cloud infrastructure, creating visual art,
+            and documenting the journey.
+          </motion.p>
+
+          {/* CTAs */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            style={{ display: 'flex', gap: 14, flexWrap: 'wrap', justifyContent: 'center' }}
+          >
+            <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}>
+              <Link href="/about" className="btn btnPrimary">About Me</Link>
+            </motion.div>
+            <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}>
+              <a href="#connect" className="btn btnGhost">Connect</a>
+            </motion.div>
           </motion.div>
-        </motion.div>
+
+          {/* Scroll indicator */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.8, duration: 1 }}
+            style={{ marginTop: 56 }}
+            aria-hidden="true"
+          >
+            <div style={{
+              width: 1,
+              height: 56,
+              background: 'linear-gradient(to bottom, rgba(212, 168, 67, 0.6), transparent)',
+              margin: '0 auto',
+            }} />
+          </motion.div>
+
+        </div>
       </section>
 
-      {/* ── Current Focus ── */}
-      <SectionHeading
-        title="Current Focus"
-        subtitle="What I am actively building, learning, and creating right now."
-      />
+      {/* Page content below the fold */}
+      <div style={{ maxWidth: 980, margin: '0 auto', padding: '0 28px 80px' }}>
 
-      <StaggerGrid style={{
-        display: 'grid',
-        gap: 16,
-        gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
-        marginBottom: 56,
-      }}>
-        {FOCUS.map((item) => (
-          <StaggerCard key={item.title}>
-            <div className="card" style={{ padding: 24, borderTop: '3px solid var(--link)', height: '100%', boxSizing: 'border-box' }}>
-              <div style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                width: 48,
-                height: 48,
-                borderRadius: 12,
-                background: 'color-mix(in srgb, var(--link) 15%, transparent)',
-                fontSize: 24,
-                marginBottom: 16,
-              }}>
-                {item.icon}
-              </div>
-              <h3 style={{ margin: '0 0 8px', fontSize: 15, fontWeight: 700 }}>{item.title}</h3>
-              <p className="p" style={{ margin: 0 }}>{item.desc}</p>
-            </div>
-          </StaggerCard>
-        ))}
-      </StaggerGrid>
+        {/* ── Current Focus ── */}
+        <SectionHeading
+          title="Current Focus"
+          subtitle="What I am actively building, learning, and creating right now."
+        />
 
-      {/* ── Skills ── */}
-      <SectionHeading
-        title="Skills and Tools"
-        subtitle="Technologies I build with and platforms I work across."
-      />
-
-      <motion.div
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: '-60px' }}
-        variants={{ visible: { transition: { staggerChildren: 0.07 } }, hidden: {} }}
-        style={{
+        <StaggerGrid style={{
           display: 'grid',
-          gap: 12,
-          gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+          gap: 16,
+          gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
           marginBottom: 56,
-        }}
-      >
-        {STACK.map((item, i) => (
-          <StackCard key={item.name} item={item} index={i} />
-        ))}
-      </motion.div>
+        }}>
+          {FOCUS.map((item) => (
+            <StaggerCard key={item.title}>
+              <div className="card" style={{ padding: 28, borderTop: '2px solid var(--gold)', height: '100%', boxSizing: 'border-box' }}>
+                <div style={{ fontSize: 28, marginBottom: 16 }}>
+                  {item.icon}
+                </div>
+                <h3 style={{ margin: '0 0 10px', fontSize: 13, fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--text)' }}>
+                  {item.title}
+                </h3>
+                <p className="p" style={{ margin: 0 }}>{item.desc}</p>
+              </div>
+            </StaggerCard>
+          ))}
+        </StaggerGrid>
 
-      {/* ── Connect ── */}
-      <FadeUp>
-        <div id="connect" className="card" style={{ padding: 32, display: 'flex', flexDirection: 'column', gap: 20 }}>
-          <div>
-            <h2 className="h2" style={{ margin: '0 0 12px' }}>Connect</h2>
-            <p className="p" style={{ maxWidth: 560, margin: 0 }}>
-              Find me on LinkedIn and GitHub, or read the full story on the About page.
-            </p>
-          </div>
-          <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
-            <motion.a
-              href="https://www.linkedin.com/in/andywentzloff"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn btnPrimary"
-              whileHover={{ scale: 1.04 }}
-              whileTap={{ scale: 0.97 }}
-            >
-              LinkedIn
-            </motion.a>
-            <motion.a
-              href="https://github.com/andificus"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn btnGhost"
-              whileHover={{ scale: 1.04 }}
-              whileTap={{ scale: 0.97 }}
-            >
-              GitHub
-            </motion.a>
-          </div>
-        </div>
-      </FadeUp>
+        {/* ── Skills ── */}
+        <SectionHeading
+          title="Skills and Tools"
+          subtitle="Technologies I build with and platforms I work across."
+        />
 
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-60px' }}
+          variants={{ visible: { transition: { staggerChildren: 0.07 } }, hidden: {} }}
+          style={{
+            display: 'grid',
+            gap: 10,
+            gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+            marginBottom: 56,
+          }}
+        >
+          {STACK.map((item, i) => (
+            <StackCard key={item.name} item={item} index={i} />
+          ))}
+        </motion.div>
+
+        {/* ── Connect ── */}
+        <FadeUp>
+          <div id="connect" className="card" style={{ padding: 40, display: 'flex', flexDirection: 'column', gap: 20 }}>
+            <div>
+              <h2 className="h2" style={{ margin: '0 0 12px' }}>Connect</h2>
+              <p className="p" style={{ maxWidth: 520, margin: 0 }}>
+                Find me on LinkedIn and GitHub, or read the full story on the About page.
+              </p>
+            </div>
+            <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap' }}>
+              <motion.a
+                href="https://www.linkedin.com/in/andywentzloff"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btnPrimary"
+                whileHover={{ scale: 1.04 }}
+                whileTap={{ scale: 0.97 }}
+              >
+                LinkedIn
+              </motion.a>
+              <motion.a
+                href="https://github.com/andificus"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btnGhost"
+                whileHover={{ scale: 1.04 }}
+                whileTap={{ scale: 0.97 }}
+              >
+                GitHub
+              </motion.a>
+            </div>
+          </div>
+        </FadeUp>
+
+      </div>
     </main>
   )
 }

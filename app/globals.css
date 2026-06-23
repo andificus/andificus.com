@@ -1,41 +1,40 @@
 @import "tailwindcss";
 
 /* ============================================================
-   DESIGN TOKENS — Dark only. No light theme.
+   DESIGN TOKENS — Dark only, Replit-aligned palette
    ============================================================ */
 :root {
   /* Surfaces */
-  --bg:             #0a0d14;
-  --surface:        #111621;
-  --surface-raised: #18202e;
+  --bg:             #0a0a0a;
+  --surface:        #0f0f0f;
+  --surface-raised: #141414;
 
-  /* Lines */
-  --border:         rgba(196, 208, 232, 0.10);
-  --border-strong:  rgba(196, 208, 232, 0.18);
+  /* Lines — warm gold-tinted dark border */
+  --border:         #2a2518;
+  --border-strong:  #3a3120;
 
   /* Text */
-  --text:           #eef1f7;
-  --text-muted:     #97a3bb;
+  --text:           #d9d9d9;
+  --text-muted:     #999999;
 
-  /* Accents — use sparingly */
-  --gold:           #d4b06a;
+  /* Gold — the only accent colour */
+  --gold:           #D4A843;
   --gold-bright:    #e6c585;
-  --amber:          #d99a5b;
-  --starlight:      #f5edd8;
+  --gold-dim:       rgba(212, 168, 67, 0.5);
 
   /* Rare accents — special moments only */
   --sapphire:       #5b8def;
   --teal:           #46b3a3;
   --amethyst:       #a585e0;
 
-  /* Semantic aliases — backward compat with existing components */
-  --link:           #d4b06a;
-  --muted:          #97a3bb;
-  --card:           #111621;
-  --shadow:         rgba(0, 0, 0, 0.45);
+  /* Semantic aliases for existing component references */
+  --link:           #D4A843;
+  --muted:          #999999;
+  --card:           #0f0f0f;
+  --shadow:         rgba(0, 0, 0, 0.6);
   --btn-bg:         transparent;
-  --btn-text:       #d4b06a;
-  --btn-border:     rgba(212, 176, 106, 0.5);
+  --btn-text:       #D4A843;
+  --btn-border:     rgba(212, 168, 67, 0.5);
 }
 
 /* ============================================================
@@ -50,6 +49,7 @@ body {
   color: var(--text);
   font-family: var(--font-geist-sans), system-ui, sans-serif;
   font-size: 16px;
+  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
@@ -58,8 +58,6 @@ body {
 /* ============================================================
    TYPOGRAPHY
    ============================================================ */
-
-/* Display — hero scale */
 .display {
   font-family: var(--font-cinzel), Georgia, 'Times New Roman', serif;
   font-size: clamp(2.75rem, 6vw, 4.5rem);
@@ -70,7 +68,6 @@ body {
   margin: 0;
 }
 
-/* Page-level headings — h1 */
 .titleHeading {
   font-family: var(--font-cinzel), Georgia, 'Times New Roman', serif;
   font-size: clamp(1.8rem, 4vw, 2.8rem);
@@ -81,64 +78,51 @@ body {
   margin: 0 0 16px;
 }
 
-/* Section headings — h2 */
 .h2 {
   font-family: var(--font-cinzel), Georgia, 'Times New Roman', serif;
-  font-size: clamp(0.9rem, 2vw, 1.1rem);
+  font-size: clamp(0.75rem, 1.5vw, 0.9rem);
   font-weight: 400;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--text);
   margin: 0 0 8px;
 }
 
-/* Card headings — h3 */
-.h3 {
-  font-size: 0.85rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--text);
-  margin: 0 0 8px;
-}
-
-/* Eyebrow label — above headings */
 .eyebrow {
   font-size: 0.68rem;
   font-weight: 600;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--gold);
 }
 
-/* Body copy */
 .p {
-  font-size: 0.95rem;
-  line-height: 1.78;
+  font-size: 0.9rem;
+  line-height: 1.8;
   color: var(--text-muted);
   margin: 0;
 }
 
 /* ============================================================
-   CARD — solid architectural surface, no glass
+   CARD — solid architectural surface
    ============================================================ */
 .card {
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 2px;
+  border-radius: 0;
   padding: 18px;
-  box-shadow: 0 4px 32px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 4px 32px rgba(0, 0, 0, 0.4);
   position: relative;
 }
 
-/* Corner bracket ornament on cards — CSS only, no extra markup */
+/* Gold corner bracket ornaments */
 .card::before,
 .card::after {
   content: '';
   position: absolute;
   width: 10px;
   height: 10px;
-  border-color: rgba(212, 176, 106, 0.3);
+  border-color: rgba(212, 168, 67, 0.25);
   border-style: solid;
   pointer-events: none;
 }
@@ -160,28 +144,29 @@ body {
    ============================================================ */
 .btn {
   display: inline-block;
-  padding: 10px 20px;
+  padding: 11px 22px;
   border-radius: 0;
   border: 1px solid var(--btn-border);
   text-decoration: none;
-  font-size: 0.7rem;
+  font-size: 0.68rem;
   font-weight: 600;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   cursor: pointer;
   transition: background 150ms ease, color 150ms ease, border-color 150ms ease;
   font-family: inherit;
   line-height: 1;
+  white-space: nowrap;
 }
 
 .btnPrimary {
   background: transparent;
   color: var(--gold);
-  border-color: rgba(212, 176, 106, 0.6);
+  border-color: rgba(212, 168, 67, 0.6);
 }
 
 .btnPrimary:hover {
-  background: rgba(212, 176, 106, 0.08);
+  background: rgba(212, 168, 67, 0.08);
   border-color: var(--gold);
 }
 
@@ -193,10 +178,9 @@ body {
 
 .btnGhost:hover {
   color: var(--text);
-  border-color: rgba(196, 208, 232, 0.35);
+  border-color: #555;
 }
 
-/* Focus — accessible gold outline */
 .navLink:focus-visible,
 .btn:focus-visible {
   outline: 2px solid var(--gold);
@@ -210,15 +194,14 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 32px 0;
+  padding: 40px 0;
   width: 100%;
-  gap: 0;
 }
 
 .dividerLine {
   height: 1px;
   flex: 1;
-  max-width: 160px;
+  max-width: 180px;
   background: var(--border);
 }
 
@@ -227,20 +210,22 @@ body {
   height: 7px;
   border: 1px solid var(--gold);
   transform: rotate(45deg);
-  margin: 0 14px;
+  margin: 0 16px;
   flex-shrink: 0;
-  opacity: 0.7;
+  opacity: 0.6;
 }
 
 /* ============================================================
-   NAVBAR — solid obsidian, hairline border
+   NAVBAR
    ============================================================ */
 .navbar {
   position: sticky;
   top: 0;
   z-index: 50;
-  background: var(--bg);
+  background: rgba(10, 10, 10, 0.92);
   border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
 .navbarInner {
@@ -261,7 +246,7 @@ body {
 }
 
 .brandLogo {
-  height: 40px;
+  height: 38px;
   width: auto;
   display: block;
 }
@@ -275,7 +260,7 @@ body {
 .navLink {
   font-size: 0.68rem;
   font-weight: 600;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   text-decoration: none;
   color: var(--text-muted);
@@ -293,7 +278,7 @@ body {
   align-items: center;
 }
 
-/* Hamburger — mobile only */
+/* Hamburger */
 .hamburger {
   display: none;
   flex-direction: column;
@@ -320,18 +305,11 @@ body {
 }
 
 @media (max-width: 640px) {
-  .brandLogo {
-    height: 34px;
-  }
-  .navbarLinks {
-    display: none;
-  }
-  .navbarRight {
-    display: none;
-  }
-  .hamburger {
-    display: flex;
-  }
+  .brandLogo { height: 32px; }
+  .navbarLinks { display: none; }
+  .navbarRight { display: none; }
+  .hamburger { display: flex; }
+  .navbarInner { padding: 12px 20px; }
 }
 
 /* ============================================================
@@ -341,13 +319,12 @@ body {
   position: fixed;
   inset: 0;
   z-index: 100;
-  background: rgba(10, 13, 20, 0.97);
+  background: rgba(10, 10, 10, 0.97);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 36px;
-  /* Decorative faint diamond behind links */
   overflow: hidden;
 }
 
@@ -356,7 +333,7 @@ body {
   position: absolute;
   width: 280px;
   height: 280px;
-  border: 1px solid rgba(212, 176, 106, 0.06);
+  border: 1px solid rgba(212, 168, 67, 0.06);
   transform: rotate(45deg);
   pointer-events: none;
 }
@@ -364,12 +341,11 @@ body {
 .mobileNavLink {
   font-family: var(--font-cinzel), Georgia, serif;
   font-size: 1.75rem;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: rgba(238, 241, 247, 0.8);
+  color: rgba(217, 217, 217, 0.8);
   text-decoration: none;
   transition: color 150ms ease;
-  /* Minimum touch target */
   padding: 8px 0;
   min-height: 44px;
   display: flex;
@@ -387,20 +363,20 @@ body {
   font-size: 0.62rem;
   letter-spacing: 0.24em;
   text-transform: uppercase;
-  color: rgba(212, 176, 106, 0.45);
+  color: rgba(212, 168, 67, 0.4);
   margin-top: 4px;
 }
 
 .mobileTaglineDot {
   width: 4px;
   height: 4px;
-  background: rgba(212, 176, 106, 0.45);
+  background: rgba(212, 168, 67, 0.4);
   transform: rotate(45deg);
   flex-shrink: 0;
 }
 
 /* ============================================================
-   FOOTER — solid surface, hairline top
+   FOOTER
    ============================================================ */
 .footer {
   background: var(--surface);
@@ -434,7 +410,7 @@ body {
 .footer .brand {
   font-size: 0.7rem;
   font-weight: 600;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--text);
 }
@@ -459,13 +435,9 @@ body {
 }
 
 /* ============================================================
-   RESPONSIVE — general
+   RESPONSIVE
    ============================================================ */
 @media (max-width: 640px) {
-  .footer-inner {
-    padding: 20px 20px;
-  }
-  .footer-right {
-    gap: 12px;
-  }
+  .footer-inner { padding: 20px; }
+  .footer-right { gap: 12px; }
 }
