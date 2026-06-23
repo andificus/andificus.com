@@ -1,7 +1,4 @@
 User-agent: *
 Allow: /
-Disallow: /dashboard
-Disallow: /profile
-Disallow: /settings
 
 Sitemap: https://andificus.com/sitemap.xml
